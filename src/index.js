@@ -1,3 +1,2 @@
-let varibl = '20';
-
-console.log(lel);
+import './app';
+import './sass/styles.scss';
