@@ -12,9 +12,7 @@
    git commit -m “init name_your_branch” git push origin name_your_branch
 5. Создаете pull request на слитие вашей ветки с dev там на гитхабе, все далее
    работа тим лида, разве что он отклонит Ваш пул реквест и скажет что то
-   доделать в своей ветке а затем заново создать пул реквест:
-   filesystem:https://docs.google.com/persistent/docs/documents/1rlFIPKL9BSqp2uJ-NqJggBBH-hqD9SQb3pnmiLT42OM/image/1iercE7-A2P2t9qm-B-3hHQk_nhhb-1dYAIpmIrA
-   filesystem:https://docs.google.com/persistent/docs/documents/1rlFIPKL9BSqp2uJ-NqJggBBH-hqD9SQb3pnmiLT42OM/image/1qNKL7kBRz4q36u-LdmBJ7yJhZxW86kOouQkDba0?zx=73wrohmdlote
+   доделать в своей ветке а затем заново создать пул реквест
 
 Если какие-то сложности в работе с Гитом, вот наглядное видео
 https://www.youtube.com/watch?v=JMfvsY_fLqA&feature=youtu.be
