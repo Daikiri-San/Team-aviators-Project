@@ -1,14 +1,16 @@
-/*
- * Все паршалы импортировать в этот файл
- */
+// Base
 
 @import './base/normalize';
+@import './base/fonts';
 @import './base/base';
+
+// Helpers
+
 @import './helpers/variables';
 
 // Layouts
-@import './layouts/header';
 
-@import './films-list.scss';
-
-@import './layouts/footer';
+@import './layout/header';
+@import './layout/films-list';
+@import './layout/detailsPage';
+@import './layout/footer';
