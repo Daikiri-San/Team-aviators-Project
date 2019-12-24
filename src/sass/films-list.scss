@@ -19,10 +19,27 @@ main {
   border-radius: 10px;
 }
 
+.films-list--rate {
+  width: 30px;
+  height: 16px;
+  border-radius: 6px;
+  margin-left: 260px;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  color: black;
+  background-color: white;
+  text-align: center;
+}
+
+.films-list--rate p {
+  margin: 0px;
+}
+
 .films-list--header {
   font-size: 12px;
   line-height: 1.2;
   color: white;
-  margin-top: 130px;
+  margin-top: 110px;
   margin-left: 10px;
 }
