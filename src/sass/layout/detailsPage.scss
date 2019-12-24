@@ -1,0 +1,51 @@
+.film-details {
+  width: 88vw;
+  max-width: 500px;
+  margin-bottom: 20px;
+
+  &-title {
+    font-family: $secondary-font;
+    font-size: $title-font-size;
+  }
+
+  &-image {
+    margin-bottom: 20px;
+  }
+
+  &-semititle {
+    font-size: $title-font-size;
+  }
+
+  &-text {
+    font-family: $main-font;
+    font-size: $main-font-size;
+    color: $secondary-font-color;
+  }
+}
+
+.film-info {
+  margin-bottom: 40px;
+  list-style: none;
+
+  &-item {
+    display: flex;
+    justify-content: space-evenly;
+
+    &__note {
+      display: inline-block;
+      font-family: $main-font;
+      font-size: 13px;
+      line-height: 27px;
+      width: 40%;
+      color: $secondary-font-color;
+    }
+  }
+}
+
+.green-item {
+  background-color: $secondary-background-color;
+}
+
+.first-none {
+  margin-left: 10px;
+}
