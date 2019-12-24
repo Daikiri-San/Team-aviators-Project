@@ -1,0 +1,61 @@
+.home {
+  min-width: 300px;
+
+  &__search {
+    width: 258px;
+    margin: 0 auto 36px;
+  }
+
+  &__input {
+    color: $main-black-color;
+    font-family: $main-font;
+    font-weight: $main-font-weight;
+    font-size: 15px;
+    min-width: 258px;
+    line-height: 24px;
+    border: none;
+    border-bottom: 1px solid $main-black-color;
+    padding: 20px 10px 0;
+
+    &::placeholder {
+      color: $main-black-color;
+      font-family: $main-font;
+      font-weight: $main-font-weight;
+      font-size: 15px;
+    }
+  }
+
+  &__button {
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+
+    &-prew,
+    &-next,
+    &-page {
+      width: 94px;
+      height: 46px;
+      padding: 0;
+      border: none;
+      outline: none;
+      font-size: 22px;
+      font-weight: 800;
+      border-radius: 6px;
+      color: #556270;
+      background-color: $main-white-color;
+      box-shadow: 0 0 1px 1px $main-txt-color;
+      transition: all 0.3s ease 0s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #92979755;
+        box-shadow: 0 0 3px 3px #273b3a;
+        color: $main-white-color;
+      }
+    }
+
+    &-page {
+      width: 48px;
+    }
+  }
+}
