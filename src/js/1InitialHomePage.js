@@ -7,7 +7,15 @@ const refs = {
   homePage: document.querySelector('#home-page'),
   detailsPage: document.querySelector('#film-info'),
   myLibList: document.querySelector('#mylib-list'),
+  ScrollButton: document.querySelector('.scroll__button'),
 };
+
+function toTop() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+refs.ScrollButton.addEventListener('click', toTop);
 
 function makeHomePage() {
   refs.detailsPage.innerHTML = '';
@@ -52,7 +60,7 @@ initialFetch.fetchPopularFilms().then(({ results }) => {
   results.map(result =>
     refs.myLibHome.insertAdjacentHTML(
       'beforeend',
-      `  <li class="home__list-item">
+      `  <li class="home__list-item data-index="${result.id}"">
       <div class="home__list--cover">
         <div class="home__list-rate">
           <p>${result.vote_average}</p>
