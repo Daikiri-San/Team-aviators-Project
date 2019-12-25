@@ -38,7 +38,11 @@ function makeHomePage() {
   </div>`,
   );
   refs.myLibHome = document.querySelector('#mylib-home');
+  refs.nextButton = document.querySelector('.home__button-next');
+  refs.pageButton = document.querySelector('.home__button-page');
+  refs.prevButton = document.querySelector('.home__button-prew');
 }
+
 const initialFetch = {
   page: 1,
   fetchPopularFilms() {
@@ -55,25 +59,30 @@ const initialFetch = {
 };
 
 makeHomePage();
-initialFetch.fetchPopularFilms().then(({ results }) => {
-  console.log(results);
-  results.map(result =>
-    refs.myLibHome.insertAdjacentHTML(
-      'beforeend',
-      `  <li class="home__list-item data-index="${result.id}"">
-      <div class="home__list--cover">
-        <div class="home__list-rate">
-          <p>${result.vote_average}</p>
+
+const makeOnePage = () => {
+  initialFetch.fetchPopularFilms().then(({ results }) => {
+    console.log(results);
+    results.map(result =>
+      refs.myLibHome.insertAdjacentHTML(
+        'beforeend',
+        `  <li class="home__list-item data-index="${result.id}"">
+        <div class="home__list--cover">
+          <div class="home__list-rate">
+            <p>${result.vote_average}</p>
+          </div>
+          <h2 class="home__list-header">${
+            result.title
+          } (${result.release_date.slice(0, 4)})</h2>
         </div>
-        <h2 class="home__list-header">${
-          result.title
-        } (${result.release_date.slice(0, 4)})</h2>
-      </div>
-      <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
-        result.poster_path
-      }" alt="poster of ${result.title}" />
-    </li>
-  `,
-    ),
-  );
-});
+        <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
+          result.poster_path
+        }" alt="poster of ${result.title}" />
+      </li>
+    `,
+      ),
+    );
+  });
+};
+
+makeOnePage();
