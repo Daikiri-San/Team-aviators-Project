@@ -2,7 +2,6 @@
   max-width: 300px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   align-items: center;
   margin-bottom: 20px;
 
@@ -27,8 +26,8 @@
     position: relative;
     flex-basis: 298px;
     height: 156px;
-    border-radius: 10px;
     margin-bottom: 10px;
+    cursor: pointer;
 
     &__img {
       object-fit: cover;
