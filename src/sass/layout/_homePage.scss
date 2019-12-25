@@ -59,6 +59,7 @@
       width: 48px;
     }
   }
+
   &__list {
     max-width: 300px;
     display: flex;
@@ -81,6 +82,7 @@
         rgba(19, 19, 19, 0.5) 100%
       );
     }
+
     &-item {
       position: relative;
       flex-basis: 298px;
@@ -88,6 +90,7 @@
       border-radius: 10px;
       margin-bottom: 10px;
     }
+
     &-rate {
       font-family: $secondary-font;
       width: 30px;
@@ -101,6 +104,7 @@
       background-color: $main-white-color;
       text-align: center;
     }
+
     &-header {
       font-size: $main-font-size;
       color: $main-white-color;
