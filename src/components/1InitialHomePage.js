@@ -5,6 +5,9 @@ import './view/toTopButton';
 import homePageMarkup from '../templates/homePageMarkup';
 import initialFetchAPI from './services/initialFetchApi';
 import drawMovieDetails from './4filmDetailsPage';
+import searchFetch from './services/fetchSearchMovies';
+
+const debounce = require('lodash.debounce');
 
 function makeHomePage() {
   refs.detailsPage.innerHTML = '';
@@ -16,6 +19,8 @@ function makeHomePage() {
   refs.nextButton = document.querySelector('#button-next');
 
   refs.myLibHome.addEventListener('click', drawMovieDetails);
+  refs.searchInput = document.querySelector('#search-input');
+  refs.searchInput.addEventListener('input', debounce(searchMovies, 500));
 }
 
 makeHomePage();
@@ -45,5 +50,37 @@ const makeOnePage = () => {
 };
 
 makeOnePage();
+
+function searchMovies({ target }) {
+  const input = target.value;
+  if (input === '') {
+    return;
+  }
+  refs.myLibHome.innerHTML = '';
+  searchFetch.fetchSearchMovies(input).then(({ results }) => {
+    if (results.length === 0) {
+      return;
+    }
+    results.map(result =>
+      refs.myLibHome.insertAdjacentHTML(
+        'beforeend',
+        `  <li class="home__list-item" data-index="${result.id}">
+        <div class="home__list--cover">
+          <div class="home__list-rate">
+            <p>${result.vote_average}</p>
+          </div>
+          <h2 class="home__list-header">${
+            result.title
+          } (${result.release_date.slice(0, 4)})</h2>
+        </div>
+        <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
+          result.poster_path
+        }" alt="poster of ${result.title}" />
+      </li>
+    `,
+      ),
+    );
+  });
+}
 
 export default makeOnePage;

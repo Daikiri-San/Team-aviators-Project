@@ -1,5 +1,6 @@
 const homePageMarkup = `  <form action="#" class="home__search">
 <input
+  id="search-input"
   type=""
   name="query"
   placeholder="Write movie name and click Enter"
