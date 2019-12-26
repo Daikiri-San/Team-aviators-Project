@@ -1,0 +1,11 @@
+.footer {
+  min-height: 85px;
+  line-height: 77px;
+
+  &__link-author {
+    font-family: $main-font;
+    font-weight: $main-font-weight;
+    font-size: 16px;
+    color: $main-txt-color;
+  }
+}

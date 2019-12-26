@@ -1,0 +1,21 @@
+// Base
+
+@import './base/normalize';
+@import './base/fonts';
+@import './base/base';
+
+// Helpers
+
+@import './helpers/variables';
+
+// Components
+
+@import './components/scrollButton';
+
+// Layouts
+
+@import './layout/homePage';
+@import './layout/header';
+@import './layout/myFilmLibraryPage';
+@import './layout/detailsPage';
+@import './layout/footer';
