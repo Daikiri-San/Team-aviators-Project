@@ -10,8 +10,9 @@
     max-width: 720px;
   }
 
-  @media screen and (min-width: 75em) {
-    max-width: 960px;
+  @media screen and (min-width: 64em) {
+    max-width: none;
+    justify-content: space-evenly;
   }
 
   &--cover {
@@ -39,7 +40,31 @@
     cursor: pointer;
 
     @media screen and (min-width: 48em) {
+      height: 200px;
+      flex-basis: 310px;
       margin-right: 10px;
+    }
+
+    @media screen and (min-width: 64em) {
+      height: 400px;
+      flex-basis: 21%;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: 75em) {
+      height: 500px;
+      margin-bottom: 30px;
+    }
+
+    @media screen and (min-width: 90em) {
+      height: 600px;
+      margin-bottom: 40px;
+    }
+
+    @media screen and (min-width: 100em) {
+      height: 700px;
+      flex-basis: 23%;
     }
 
     &__img {
@@ -49,23 +74,37 @@
   }
 
   &-rate {
+    position: absolute;
     font-family: $secondary-font;
     width: 30px;
     height: 16px;
     border-radius: 6px;
-    margin-left: 260px;
-    margin-top: 6px;
+    right: 8px;
+    top: 8px;
     font-size: $main-font-size;
     line-height: 16px;
     color: $main-black-color;
     background-color: $main-white-color;
     text-align: center;
+
+    @media screen and (min-width: 75em) {
+      border-radius: 8px;
+      width: 40px;
+      height: 18px;
+      line-height: 20px;
+      font-size: 16px;
+    }
   }
 
   &-header {
+    position: absolute;
     font-size: $main-font-size;
     color: $main-white-color;
-    margin-top: 110px;
-    margin-left: 10px;
+    bottom: 0px;
+    left: 10px;
+
+    @media screen and (min-width: 75em) {
+      font-size: 18px;
+    }
   }
 }
