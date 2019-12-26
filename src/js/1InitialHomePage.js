@@ -51,7 +51,7 @@ const initialFetch = {
     ).then(res => res.json().catch(error => console.log(error)));
   },
   incrementPage() {
-    this.page += 1;
+    return (this.page += 1);
   },
   decrementPage() {
     this.page -= 1;

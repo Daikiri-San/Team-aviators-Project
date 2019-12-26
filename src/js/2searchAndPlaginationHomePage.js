@@ -1,37 +1,33 @@
 'use strict';
 
-let currentPage = +refs.pageButton.textContent;
+const changePageNumber = () => {
+  const currentPage = initialFetch.page;
 
-const incrementPageNumber = () => {
-  const nextPageNumber = currentPage++ + 1;
-  console.log(nextPageNumber);
-
-  return (refs.pageButton.textContent = nextPageNumber);
-};
-
-const decrementPageNumber = () => {
-  const nextPageNumber = currentPage-- - 1;
-  console.log(nextPageNumber);
-
-  return (refs.pageButton.textContent = nextPageNumber);
+  return (refs.pageButton.textContent = currentPage);
 };
 
 const nextPage = () => {
   refs.myLibHome.innerHTML = '';
+
   initialFetch.incrementPage();
+
   makeOnePage();
-  incrementPageNumber();
-  // console.dir(+refs.pageButton.textContent);
+  changePageNumber();
 };
 
 const prevPage = () => {
+  const currentPage = initialFetch.page;
+
   if (currentPage <= 1) {
     return;
   }
+
   refs.myLibHome.innerHTML = '';
+
   initialFetch.decrementPage();
+
   makeOnePage();
-  decrementPageNumber();
+  changePageNumber();
 };
 
 refs.nextButton.addEventListener('click', nextPage);
