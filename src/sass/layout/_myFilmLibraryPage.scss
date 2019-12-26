@@ -14,7 +14,29 @@
     max-width: none;
     justify-content: space-evenly;
   }
+  &--hover {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 10px;
+    display: flex;
+    opacity: 0;
+    justify-content: space-around;
+    align-items: center;
 
+    &-button {
+      width: 40px;
+      height: 40px;
+      border: 1px solid $main-white-color;
+    }
+
+    &-img {
+      width: 100%;
+      height: auto;
+    }
+  }
   &--cover {
     position: absolute;
     top: 0px;
@@ -38,6 +60,10 @@
     height: 156px;
     margin-bottom: 10px;
     cursor: pointer;
+
+    &:hover > div {
+      opacity: 1;
+    }
 
     @media screen and (min-width: 48em) {
       height: 200px;
