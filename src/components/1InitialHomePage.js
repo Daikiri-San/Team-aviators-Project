@@ -64,8 +64,9 @@ function searchMovies({ target }) {
   if (input === '') {
     return;
   }
+  searchFetch.query = input;
   refs.myLibHome.innerHTML = '';
-  searchFetch.fetchSearchMovies(input).then(({ results }) => {
+  searchFetch.fetchSearchMovies().then(({ results }) => {
     if (results.length === 0) {
       return;
     }
