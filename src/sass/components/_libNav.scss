@@ -1,0 +1,30 @@
+.libnav {
+  margin: 0 auto;
+  width: 100%;
+  font-family: $main-font;
+  font-size: $main-font-size;
+  background-color: #f3f6f6;
+  box-shadow: 0px 20px 21px 0px rgba(0, 0, 0, 0.4);
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0px;
+  }
+
+  &__button {
+    padding: 10px 42px;
+    border: none;
+    background-color: #f3f6f6;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.75);
+    transition: background-color 0.2s linear;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border-bottom: none;
+      background-color: $main-background-color;
+      color: #f3f6f6;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 .container {
   margin: 0 auto;
-  font-weight: $main-font-weight;
+  font-family: $main-font;
   font-size: $main-font-size;
   background-color: $main-background-color;
 }
@@ -12,7 +12,6 @@
   justify-content: space-between;
   padding: 10px 20px;
   text-align: center;
-  margin-bottom: 20px;
 }
 
 .nav {
@@ -33,7 +32,7 @@
     &:focus,
     &:active {
       color: $main-black-color;
-      font-weight: $second-fond-weight;
+      font-family: $secondary-font;
     }
 
     &::after {
