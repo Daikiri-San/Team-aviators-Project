@@ -5,16 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Filmoteka</title>
-    <link rel="stylesheet" href="css/styles.css" type="text/css" />
   </head>
-
   <body>
     <!-- HEADER -->
-    //= html/header.html
-    <!-- MAIN -->
-    //= html/main.html
+    <%= require('html-loader!./html/header.html') %>
+    <main>
+      <!-- homePage -->
+      <%= require('html-loader!./html/homePage.html') %>
+      <!-- myFilmLibraryPage -->
+      <%= require('html-loader!./html/myFilmLibraryPage.html') %>
+      <!-- details-page -->
+      <%= require('html-loader!./html/detailsPage.html') %>
+    </main>
     <!-- FOOTER -->
-    //= html/footer.html
-    <script src="js/scripts.js"></script>
+    <%= require('html-loader!./html/footer.html') %>
   </body>
 </html>
