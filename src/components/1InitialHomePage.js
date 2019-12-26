@@ -46,4 +46,4 @@ const makeOnePage = () => {
 
 makeOnePage();
 
-export default makeOnePage;
+export { makeOnePage, makeHomePage };

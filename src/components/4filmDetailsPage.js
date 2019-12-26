@@ -1,5 +1,10 @@
 import refs from './utils/refs';
+// import initialFetchAPI from './services/initialFetchApi';
+
 import fetchMovieDetails from './services/fetchMovieDetails';
+
+import { makeOnePage, makeHomePage } from './1InitialHomePage';
+// import './2searchAndPlaginationHomePage';
 
 function drawMovieDetails({ target }) {
   if (!target.classList.contains('home__list--cover')) {
@@ -49,11 +54,27 @@ function drawMovieDetails({ target }) {
     <p class="film-details-text">
       ${movie.overview}
     </p>
+    <button type="button" id="button-back" class="btn film-details__button-back">Back</button>
   </article>`,
     );
+    refs.backButton = document.querySelector('#button-back');
+    refs.backButton.addEventListener('click', backToHomePage);
+    console.log(refs.backButton);
   });
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
 }
+
+// const changePageNumber = () => {
+//   const currentPage = initialFetchAPI.page;
+
+//   return (refs.pageButton.textContent = currentPage);
+// };
+
+const backToHomePage = () => {
+  makeHomePage();
+  makeOnePage();
+  // changePageNumber();
+};
 
 export default drawMovieDetails;

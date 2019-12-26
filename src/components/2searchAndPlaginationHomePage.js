@@ -1,6 +1,6 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
-import makeOnePage from './1InitialHomePage';
+import { makeOnePage } from './1InitialHomePage';
 
 const changePageNumber = () => {
   const currentPage = initialFetchAPI.page;
@@ -34,3 +34,5 @@ const prevPage = () => {
 
 refs.nextButton.addEventListener('click', nextPage);
 refs.prevButton.addEventListener('click', prevPage);
+
+// export default changePageNumber;
