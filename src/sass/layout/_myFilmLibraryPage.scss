@@ -1,9 +1,18 @@
 .home__list {
-  max-width: 300px;
+  min-width: 300px;
+  max-width: 320px;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  justify-content: center;
   margin-bottom: 20px;
+
+  @media screen and (min-width: 48em) {
+    max-width: 720px;
+  }
+
+  @media screen and (min-width: 75em) {
+    max-width: 960px;
+  }
 
   &--cover {
     position: absolute;
@@ -28,6 +37,10 @@
     height: 156px;
     margin-bottom: 10px;
     cursor: pointer;
+
+    @media screen and (min-width: 48em) {
+      margin-right: 10px;
+    }
 
     &__img {
       object-fit: cover;

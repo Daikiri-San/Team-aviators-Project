@@ -66,7 +66,7 @@ const makeOnePage = () => {
     results.map(result =>
       refs.myLibHome.insertAdjacentHTML(
         'beforeend',
-        `  <li class="home__list-item data-index="${result.id}"">
+        `  <li class="home__list-item" data-index="${result.id}">
         <div class="home__list--cover">
           <div class="home__list-rate">
             <p>${result.vote_average}</p>
@@ -86,3 +86,62 @@ const makeOnePage = () => {
 };
 
 makeOnePage();
+
+refs.myLibHome.addEventListener('click', fetchMoovieDetails);
+
+function fetchMoovieDetails(e) {
+  return fetch(
+    `https://api.themoviedb.org/3/movie/${
+      e.target.closest('.home__list-item').dataset.index
+    }?api_key=${key}`,
+  )
+    .then(res => res.json())
+    .then(drawMoovieDetails)
+    .catch(console.log);
+}
+
+function drawMoovieDetails(moovie) {
+  refs.myLibHome.innerHTML = '';
+  refs.myLibList.innerHTML = '';
+  refs.homePage.innerHTML = '';
+  refs.detailsPage.insertAdjacentHTML(
+    'afterbegin',
+    `<article class="film-details">
+  <img
+    class="film-details-image"
+    src="http://image.tmdb.org/t/p/w500${moovie.poster_path}"
+    alt="${moovie.title}"
+  />
+  <h2 class="film-details-title">${moovie.title} (${moovie.release_date.slice(
+      0,
+      4,
+    )})</h2>
+  <ul class="film-info">
+    <li class="film-info-item green-item">
+      <div class="film-info-item__note first-note">vote / votes</div>
+      <div class="film-info-item__note next-note">${moovie.vote_average}  / ${
+      moovie.vote_count
+    }</div>
+    </li>
+    <li class="film-info-item white-item">
+      <div class="film-info-item__note first-note">popularity</div>
+      <div class="film-info-item__note next-note">${moovie.popularity}</div>
+    </li>
+    <li class="film-info-item green-item">
+      <div class="film-info-item__note first-note">original title</div>
+      <div class="film-info-item__note next-note">${moovie.original_title}</div>
+    </li>
+    <li class="film-info-item white-item">
+      <div class="film-info-item__note first-note">genre</div>
+      <div class="film-info-item__note next-note">
+        ${moovie.genres.map(e => e.name).join(', ')}
+      </div>
+    </li>
+  </ul>
+  <h3 class="film-details-semititle">About</h3>
+  <p class="film-details-text">
+    ${moovie.overview}
+  </p>
+</article>`,
+  );
+}
