@@ -1,7 +1,10 @@
 import refs from './utils/refs';
 import fetchMovieDetails from './services/fetchMovieDetails';
 
-function drawMovieDetails(event) {
+function drawMovieDetails({ target }) {
+  if (!target.classList.contains('home__list--cover')) {
+    return;
+  }
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
