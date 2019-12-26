@@ -53,6 +53,7 @@
   "dependencies": {
     "core-js": "^3.6.0",
     "handlebars": "^4.5.3",
+    "lodash.debounce": "^4.0.8",
     "regenerator-runtime": "^0.13.3"
   }
 }
