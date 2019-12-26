@@ -32,13 +32,17 @@ function makeHomePage() {
   </form>
   <ul id="mylib-home" class="list home__list"></ul>
   <div class="home__button">
-    <button type="button" class="btn home__button-prew">Prev</button>
-    <button type="button" class="btn home__button-page">1</button>
-    <button type="button" class="btn home__button-next">Next</button>
+    <button type="button" id="button-prev" class="btn home__button-prew">Prev</button>
+    <button type="button" id="button-page" class="btn home__button-page">1</button>
+    <button type="button" id="button-next" class="btn home__button-next">Next</button>
   </div>`,
   );
   refs.myLibHome = document.querySelector('#mylib-home');
+  refs.prevButton = document.querySelector('#button-prev');
+  refs.pageButton = document.querySelector('#button-page');
+  refs.nextButton = document.querySelector('#button-next');
 }
+
 const initialFetch = {
   page: 1,
   fetchPopularFilms() {
@@ -47,33 +51,38 @@ const initialFetch = {
     ).then(res => res.json().catch(error => console.log(error)));
   },
   incrementPage() {
-    this.page += 1;
+    this.page++;
   },
   decrementPage() {
-    this.page -= 1;
+    this.page--;
   },
 };
 
 makeHomePage();
-initialFetch.fetchPopularFilms().then(({ results }) => {
-  console.log(results);
-  results.map(result =>
-    refs.myLibHome.insertAdjacentHTML(
-      'beforeend',
-      `  <li class="home__list-item data-index="${result.id}"">
-      <div class="home__list--cover">
-        <div class="home__list-rate">
-          <p>${result.vote_average}</p>
+
+const makeOnePage = () => {
+  initialFetch.fetchPopularFilms().then(({ results }) => {
+    console.log(results);
+    results.map(result =>
+      refs.myLibHome.insertAdjacentHTML(
+        'beforeend',
+        `  <li class="home__list-item data-index="${result.id}"">
+        <div class="home__list--cover">
+          <div class="home__list-rate">
+            <p>${result.vote_average}</p>
+          </div>
+          <h2 class="home__list-header">${
+            result.title
+          } (${result.release_date.slice(0, 4)})</h2>
         </div>
-        <h2 class="home__list-header">${
-          result.title
-        } (${result.release_date.slice(0, 4)})</h2>
-      </div>
-      <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
-        result.poster_path
-      }" alt="poster of ${result.title}" />
-    </li>
-  `,
-    ),
-  );
-});
+        <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
+          result.poster_path
+        }" alt="poster of ${result.title}" />
+      </li>
+    `,
+      ),
+    );
+  });
+};
+
+makeOnePage();
