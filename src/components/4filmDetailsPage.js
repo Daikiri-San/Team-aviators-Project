@@ -1,11 +1,8 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import fetchMovieDetails from './services/fetchMovieDetails';
-import homePageMarkup from '../templates/homePageMarkup';
-import { makeOnePage, searchMovies } from './1InitialHomePage';
+import { makeOnePage, makeHomePage } from './1InitialHomePage';
 import { changePageNumber } from './2searchAndPlaginationHomePage';
-
-const debounce = require('lodash.debounce');
 
 function drawMovieDetails({ target }) {
   if (
@@ -66,27 +63,9 @@ function drawMovieDetails({ target }) {
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
 }
 
-const makePrevViewPage = page => {
-  refs.homePage.innerHTML = '';
-  refs.detailsPage.innerHTML = '';
-  refs.myLibList.innerHTML = '';
-
-  initialFetchAPI.page = page;
-
-  refs.homePage.insertAdjacentHTML('beforeend', homePageMarkup);
-  refs.myLibHome = document.querySelector('#mylib-home');
-  refs.prevButton = document.querySelector('#button-prev');
-  refs.pageButton = document.querySelector('#button-page');
-  refs.nextButton = document.querySelector('#button-next');
-
-  refs.myLibHome.addEventListener('click', drawMovieDetails);
-  refs.searchInput = document.querySelector('#search-input');
-  refs.searchInput.addEventListener('input', debounce(searchMovies, 500));
-};
-
 const backToPrevViewPage = () => {
   const currentPage = initialFetchAPI.page;
-  makePrevViewPage(currentPage);
+  makeHomePage(currentPage);
   makeOnePage();
 
   changePageNumber();
