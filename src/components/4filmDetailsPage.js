@@ -1,15 +1,19 @@
 import refs from './utils/refs';
+import initialFetchAPI from './services/initialFetchApi';
 import fetchMovieDetails from './services/fetchMovieDetails';
+import homePageMarkup from '../templates/homePageMarkup';
+import { makeOnePage, searchMovies } from './1InitialHomePage';
+import { changePageNumber } from './2searchAndPlaginationHomePage';
+
+const debounce = require('lodash.debounce');
 
 function drawMovieDetails({ target }) {
   if (
     !target.classList.contains('home__list--cover') ||
     target.classList.contains('home__list--hover-button')
   ) {
-    console.log(target);
     return;
   }
-  console.log(target);
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
@@ -52,11 +56,40 @@ function drawMovieDetails({ target }) {
     <h3 class="film-details-semititle">About</h3>
     <p class="film-details-text">
       ${movie.overview}
-    </p>`,
+    </p>
+    <button type="button" id="button-back" class="btn film-details__button-back">Back</button>`,
     );
+    refs.backButton = document.querySelector('#button-back');
+    refs.backButton.addEventListener('click', backToPrevViewPage);
   });
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
 }
+
+const makePrevViewPage = page => {
+  refs.homePage.innerHTML = '';
+  refs.detailsPage.innerHTML = '';
+  refs.myLibList.innerHTML = '';
+
+  initialFetchAPI.page = page;
+
+  refs.homePage.insertAdjacentHTML('beforeend', homePageMarkup);
+  refs.myLibHome = document.querySelector('#mylib-home');
+  refs.prevButton = document.querySelector('#button-prev');
+  refs.pageButton = document.querySelector('#button-page');
+  refs.nextButton = document.querySelector('#button-next');
+
+  refs.myLibHome.addEventListener('click', drawMovieDetails);
+  refs.searchInput = document.querySelector('#search-input');
+  refs.searchInput.addEventListener('input', debounce(searchMovies, 500));
+};
+
+const backToPrevViewPage = () => {
+  const currentPage = initialFetchAPI.page;
+  makePrevViewPage(currentPage);
+  makeOnePage();
+
+  changePageNumber();
+};
 
 export default drawMovieDetails;
