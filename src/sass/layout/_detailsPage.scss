@@ -22,6 +22,31 @@
     font-size: $main-font-size;
     color: $secondary-font-color;
   }
+
+  &__button-back {
+    display: block;
+    width: 94px;
+    margin: 20px auto 20px;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-size: $title-font-size;
+    font-weight: 800;
+    background-color: $main-white-color;
+    cursor: pointer;
+
+    &:hover {
+      border-radius: 6px;
+      color: #556270;
+      box-shadow: 0 0 1px 1px $main-txt-color;
+      transition: all 0.3s ease 0s;
+    }
+    &:active {
+      background-color: #92979755;
+      box-shadow: 0 0 3px 3px #273b3a;
+      color: $main-white-color;
+    }
+  }
 }
 
 .film-info {
