@@ -1,6 +1,6 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
-import makeOnePage from './1InitialHomePage';
+import { makeOnePage } from './1InitialHomePage';
 import searchFetch from './services/fetchSearchMovies';
 
 const changePageNumber = () => {
