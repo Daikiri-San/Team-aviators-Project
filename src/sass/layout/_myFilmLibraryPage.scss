@@ -27,9 +27,11 @@
     align-items: center;
 
     &-button {
+      display: block;
+      position: relative;
       width: 40px;
       height: 40px;
-      border: 1px solid $main-white-color;
+      border: 3px solid $main-white-color;
     }
 
     &-img {
@@ -133,4 +135,22 @@
       font-size: 18px;
     }
   }
+}
+.fa-star,
+.fa-heart {
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  color: $main-white-color;
+  font-size: 30px;
+}
+
+#js-star-checkbox,
+#js-heart-checkbox {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  opacity: 0;
+  // width: 40px;
+  // height: 40px;
 }

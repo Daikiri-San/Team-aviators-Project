@@ -2,9 +2,14 @@ import refs from './utils/refs';
 import fetchMovieDetails from './services/fetchMovieDetails';
 
 function drawMovieDetails({ target }) {
-  if (!target.classList.contains('home__list--cover')) {
+  if (
+    !target.classList.contains('home__list--cover') ||
+    target.classList.contains('home__list--hover-button')
+  ) {
+    console.log(target);
     return;
   }
+  console.log(target);
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
