@@ -1,6 +1,5 @@
 .home {
   min-width: 300px;
-  margin-bottom: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,13 +7,12 @@
 
   &__search {
     width: 258px;
-    margin: 0 auto 36px;
+    margin: 16px auto;
   }
 
   &__input {
     color: $main-black-color;
     font-family: $main-font;
-    font-weight: $main-font-weight;
     font-size: 15px;
     min-width: 258px;
     line-height: 24px;
@@ -25,7 +23,6 @@
     &::placeholder {
       color: $main-black-color;
       font-family: $main-font;
-      font-weight: $main-font-weight;
       font-size: 15px;
     }
   }

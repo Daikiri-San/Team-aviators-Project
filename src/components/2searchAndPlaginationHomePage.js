@@ -1,6 +1,10 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import { makeOnePage } from './1InitialHomePage';
+<<<<<<< HEAD
+=======
+import searchFetch from './services/fetchSearchMovies';
+>>>>>>> b862c371b798e5ecd70480d351781b94a61ea9b8
 
 const changePageNumber = () => {
   const currentPage = initialFetchAPI.page;
@@ -32,7 +36,40 @@ const prevPage = () => {
   changePageNumber();
 };
 
-refs.nextButton.addEventListener('click', nextPage);
-refs.prevButton.addEventListener('click', prevPage);
+const changeSearchPageNumber = () => {
+  const currentPage = searchFetch.page;
 
-export { prevPage, nextPage, changePageNumber };
+  return (refs.pageButton.textContent = currentPage);
+};
+
+const nextSearchPage = () => {
+  refs.myLibHome.innerHTML = '';
+
+  searchFetch.incrementPage();
+
+  makeOnePage();
+  changeSearchPageNumber();
+};
+
+const prevSearchPage = () => {
+  const currentPage = initialFetchAPI.page;
+
+  if (currentPage <= 1) {
+    return;
+  }
+
+  refs.myLibHome.innerHTML = '';
+
+  searchFetch.decrementPage();
+
+  makeOnePage();
+  changeSearchPageNumber();
+};
+
+export {
+  nextPage,
+  prevPage,
+  nextSearchPage,
+  prevSearchPage,
+  changeSearchPageNumber,
+};

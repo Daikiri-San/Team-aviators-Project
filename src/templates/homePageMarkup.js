@@ -1,10 +1,12 @@
-const homePageMarkup = `  <form action="#" class="home__search">
-<input
-  type=""
-  name="query"
-  placeholder="Write movie name and click Enter"
-  class="home__input"
-/>
+const homePageMarkup = `  
+<form action="#" class="home__search">
+  <input
+    id="search-input"
+    type=""
+    name="query"
+    placeholder="Write movie name and click Enter"
+    class="home__input"
+  />
 </form>
 <ul id="mylib-home" class="list home__list"></ul>
 <div class="home__button">

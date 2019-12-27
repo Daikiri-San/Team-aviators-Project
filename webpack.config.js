@@ -52,7 +52,7 @@ module.exports = env =>
             ],
           },
           {
-            test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+            test: /\.(ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
             use: [
               {
                 loader: 'file-loader',

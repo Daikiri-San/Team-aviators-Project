@@ -11,17 +11,21 @@ import {
 } from './2searchAndPlaginationHomePage';
 
 function drawMovieDetails({ target }) {
-  if (!target.classList.contains('home__list--cover')) {
+  if (
+    !target.classList.contains('home__list--cover') ||
+    target.classList.contains('home__list--hover-button')
+  ) {
+    console.log(target);
     return;
   }
+  console.log(target);
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
   fetchMovieDetails(event).then(movie => {
     refs.detailsPage.insertAdjacentHTML(
       'afterbegin',
-      `<article class="film-details">
-    <img
+      `<img
       class="film-details-image"
       src="http://image.tmdb.org/t/p/w500${movie.poster_path}"
       alt="${movie.title}"
@@ -57,9 +61,7 @@ function drawMovieDetails({ target }) {
     <h3 class="film-details-semititle">About</h3>
     <p class="film-details-text">
       ${movie.overview}
-    </p>
-    <button type="button" id="button-back" class="btn film-details__button-back">Back</button>
-  </article>`,
+    </p>`,
     );
     refs.backButton = document.querySelector('#button-back');
     refs.backButton.addEventListener('click', backToHomePage);

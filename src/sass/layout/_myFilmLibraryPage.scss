@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-bottom: 20px;
+  margin: 20px 0px;
 
   @media screen and (min-width: 48em) {
     max-width: 720px;
@@ -14,7 +14,31 @@
     max-width: none;
     justify-content: space-evenly;
   }
+  &--hover {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    border-radius: 10px;
+    display: flex;
+    opacity: 0;
+    justify-content: space-around;
+    align-items: center;
 
+    &-button {
+      display: block;
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border: 3px solid $main-white-color;
+    }
+
+    &-img {
+      width: 100%;
+      height: auto;
+    }
+  }
   &--cover {
     position: absolute;
     top: 0px;
@@ -38,6 +62,10 @@
     height: 156px;
     margin-bottom: 10px;
     cursor: pointer;
+
+    &:hover > div {
+      opacity: 1;
+    }
 
     @media screen and (min-width: 48em) {
       height: 200px;
@@ -107,4 +135,22 @@
       font-size: 18px;
     }
   }
+}
+.fa-star,
+.fa-heart {
+  display: block;
+  position: absolute;
+  margin: 0 auto;
+  color: $main-white-color;
+  font-size: 30px;
+}
+
+#js-star-checkbox,
+#js-heart-checkbox {
+  display: block;
+  margin: 0 auto;
+  margin-top: 10px;
+  opacity: 0;
+  // width: 40px;
+  // height: 40px;
 }
