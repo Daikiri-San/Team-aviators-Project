@@ -12,10 +12,8 @@ function drawMovieDetails({ target }) {
     !target.classList.contains('home__list--cover') ||
     target.classList.contains('home__list--hover-button')
   ) {
-    console.log(target);
     return;
   }
-  console.log(target);
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
@@ -63,7 +61,6 @@ function drawMovieDetails({ target }) {
     );
     refs.backButton = document.querySelector('#button-back');
     refs.backButton.addEventListener('click', backToPrevViewPage);
-    console.log(refs.backButton);
   });
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
@@ -89,7 +86,6 @@ const makePrevViewPage = page => {
 
 const backToPrevViewPage = () => {
   const currentPage = initialFetchAPI.page;
-  console.log(currentPage);
   makePrevViewPage(currentPage);
   makeOnePage();
 
