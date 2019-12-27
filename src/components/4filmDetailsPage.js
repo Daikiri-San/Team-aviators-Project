@@ -1,5 +1,6 @@
 import refs from './utils/refs';
 import fetchMovieDetails from './services/fetchMovieDetails';
+import setLocalStorage from './localStorage/localStorage';
 
 function drawMovieDetails({ target }) {
   if (
@@ -9,7 +10,7 @@ function drawMovieDetails({ target }) {
     console.log(target);
     return;
   }
-  console.log(target);
+  setLocalStorage(event);
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
