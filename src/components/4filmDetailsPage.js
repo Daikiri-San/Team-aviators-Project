@@ -104,13 +104,10 @@ function drawMovieDetails({ target }) {
 const backToHomePage = () => {
   makeHomePage();
   makeOnePage();
-  // changePageNumber();
-  const prevButton = document.querySelector('#button-prev');
-  const pageButton = document.querySelector('#button-page');
-  const nextButton = document.querySelector('#button-next');
+  
+  
+  refs.nextButton.addEventListener('click', nextPage);
+  refs.prevButton.addEventListener('click', prevPage);
 };
-
-nextButton.addEventListener('click', nextPage);
-prevButton.addEventListener('click', prevPage);
 
 export default drawMovieDetails;
