@@ -18,11 +18,11 @@ import {
 
 const debounce = require('lodash.debounce');
 
-function makeHomePage() {
+const makeHomePage = pageNumber => {
   refs.homePage.innerHTML = '';
   refs.detailsPage.innerHTML = '';
   refs.myLibList.innerHTML = '';
-  initialFetchAPI.page = 1;
+  initialFetchAPI.page = pageNumber;
   refs.homePage.insertAdjacentHTML('beforeend', homePageMarkup);
   refs.myLibHome = document.querySelector('#mylib-home');
   refs.prevButton = document.querySelector('#button-prev');
@@ -32,9 +32,9 @@ function makeHomePage() {
   refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.searchInput = document.querySelector('#search-input');
   refs.searchInput.addEventListener('input', debounce(searchMovies, 500));
-}
+};
 
-makeHomePage();
+makeHomePage(1);
 
 const makeOnePage = () => {
   initialFetchAPI
