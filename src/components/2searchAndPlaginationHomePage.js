@@ -1,6 +1,7 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import makeOnePage from './1InitialHomePage';
+import searchFetch from './services/fetchSearchMovies';
 
 const changePageNumber = () => {
   const currentPage = initialFetchAPI.page;
@@ -32,5 +33,40 @@ const prevPage = () => {
   changePageNumber();
 };
 
-refs.nextButton.addEventListener('click', nextPage);
-refs.prevButton.addEventListener('click', prevPage);
+const changeSearchPageNumber = () => {
+  const currentPage = searchFetch.page;
+
+  return (refs.pageButton.textContent = currentPage);
+};
+
+const nextSearchPage = () => {
+  refs.myLibHome.innerHTML = '';
+
+  searchFetch.incrementPage();
+
+  makeOnePage();
+  changeSearchPageNumber();
+};
+
+const prevSearchPage = () => {
+  const currentPage = initialFetchAPI.page;
+
+  if (currentPage <= 1) {
+    return;
+  }
+
+  refs.myLibHome.innerHTML = '';
+
+  searchFetch.decrementPage();
+
+  makeOnePage();
+  changeSearchPageNumber();
+};
+
+export {
+  nextPage,
+  prevPage,
+  nextSearchPage,
+  prevSearchPage,
+  changeSearchPageNumber,
+};

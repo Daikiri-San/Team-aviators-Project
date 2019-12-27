@@ -6,6 +6,15 @@ import homePageMarkup from '../templates/homePageMarkup';
 import initialFetchAPI from './services/initialFetchApi';
 import drawMovieDetails from './4filmDetailsPage';
 import searchFetch from './services/fetchSearchMovies';
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/js/all.js';
+import {
+  nextPage,
+  prevPage,
+  nextSearchPage,
+  prevSearchPage,
+  changeSearchPageNumber,
+} from './2searchAndPlaginationHomePage';
 
 const debounce = require('lodash.debounce');
 
@@ -26,17 +35,21 @@ function makeHomePage() {
 makeHomePage();
 
 const makeOnePage = () => {
-  initialFetchAPI.fetchPopularFilms().then(({ results }) => {
-    results.map(result =>
-      refs.myLibHome.insertAdjacentHTML(
-        'beforeend',
-        `  <li class="home__list-item" data-index="${result.id}">
+  initialFetchAPI
+    .fetchPopularFilms()
+    .then(({ results }) => {
+      results.map(result =>
+        refs.myLibHome.insertAdjacentHTML(
+          'beforeend',
+          `  <li class="home__list-item" data-index="${result.id}">
         <div class="home__list--hover">
-        <div class="home__list--hover-like home__list--hover-button">
-        <img class="home__list--hover-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFIZ6g-Yv32nCcwP-4464nbYB643PtpR8MrhP4Rq0oPyn81pB-Zg&s" alt="like">
-        </div>
         <div class="home__list--hover-star home__list--hover-button">
-        <img class="home__list--hover-img" src="../images/films-list/star.png" alt="rate">
+        <i class="far fa-star"></i>
+        <input type="checkbox" id="js-star-checkbox" name="star">
+        </div>
+        <div class="home__list--hover-like home__list--hover-button">
+        <i class="far fa-heart"></i>
+        <input type="checkbox" id="js-heart-checkbox" name="heart">
         </div>
         </div>
         <div class="home__list--cover">
@@ -52,9 +65,13 @@ const makeOnePage = () => {
         }" alt="poster of ${result.title}" />
       </li>
     `,
-      ),
-    );
-  });
+        ),
+      );
+    })
+    .then(() => {
+      refs.nextButton.addEventListener('click', nextPage);
+      refs.prevButton.addEventListener('click', prevPage);
+    });
 };
 
 makeOnePage();
@@ -65,21 +82,27 @@ function searchMovies({ target }) {
     return;
   }
   searchFetch.query = input;
+  searchFetch.page = 1;
   refs.myLibHome.innerHTML = '';
-  searchFetch.fetchSearchMovies().then(({ results }) => {
-    if (results.length === 0) {
-      return;
-    }
-    results.map(result =>
-      refs.myLibHome.insertAdjacentHTML(
-        'beforeend',
-        `  <li class="home__list-item" data-index="${result.id}">
+  changeSearchPageNumber();
+  searchFetch
+    .fetchSearchMovies()
+    .then(({ results }) => {
+      if (results.length === 0) {
+        return;
+      }
+      results.map(result =>
+        refs.myLibHome.insertAdjacentHTML(
+          'beforeend',
+          `  <li class="home__list-item" data-index="${result.id}">
         <div class="home__list--hover">
-        <div class="home__list--hover-like home__list--hover-button">
-        <img class="home__list--hover-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFIZ6g-Yv32nCcwP-4464nbYB643PtpR8MrhP4Rq0oPyn81pB-Zg&s" alt="like">
-        </div>
         <div class="home__list--hover-star home__list--hover-button">
-        <img class="home__list--hover-img" src="../images/films-list/star.png" alt="rate">
+        <i class="far fa-star"></i>
+        <input type="checkbox" id="js-star-checkbox" name="star">
+        </div>
+        <div class="home__list--hover-like home__list--hover-button">
+        <i class="far fa-heart"></i>
+        <input type="checkbox" id="js-heart-checkbox" name="heart">
         </div>
         </div>
         <div class="home__list--cover">
@@ -95,9 +118,13 @@ function searchMovies({ target }) {
         }" alt="poster of ${result.title}" />
       </li>
     `,
-      ),
-    );
-  });
+        ),
+      );
+    })
+    .then(() => {
+      refs.nextButton.addEventListener('click', nextSearchPage);
+      refs.prevButton.addEventListener('click', prevSearchPage);
+    });
 }
 
 export default makeOnePage;
