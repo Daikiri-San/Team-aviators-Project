@@ -1,10 +1,7 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import { makeOnePage } from './1InitialHomePage';
-<<<<<<< HEAD
-=======
 import searchFetch from './services/fetchSearchMovies';
->>>>>>> b862c371b798e5ecd70480d351781b94a61ea9b8
 
 const changePageNumber = () => {
   const currentPage = initialFetchAPI.page;
@@ -69,6 +66,7 @@ const prevSearchPage = () => {
 export {
   nextPage,
   prevPage,
+  changePageNumber,
   nextSearchPage,
   prevSearchPage,
   changeSearchPageNumber,

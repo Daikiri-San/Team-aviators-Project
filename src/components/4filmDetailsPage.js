@@ -1,14 +1,11 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
-
 import fetchMovieDetails from './services/fetchMovieDetails';
+import homePageMarkup from '../templates/homePageMarkup';
+import { makeOnePage, searchMovies } from './1InitialHomePage';
+import { changePageNumber } from './2searchAndPlaginationHomePage';
 
-import { makeOnePage, makeHomePage } from './1InitialHomePage';
-import {
-  prevPage,
-  nextPage,
-  changePageNumber,
-} from './2searchAndPlaginationHomePage';
+const debounce = require('lodash.debounce');
 
 function drawMovieDetails({ target }) {
   if (
@@ -61,55 +58,42 @@ function drawMovieDetails({ target }) {
     <h3 class="film-details-semititle">About</h3>
     <p class="film-details-text">
       ${movie.overview}
-    </p>`,
+    </p>
+    <button type="button" id="button-back" class="btn film-details__button-back">Back</button>`,
     );
     refs.backButton = document.querySelector('#button-back');
-    refs.backButton.addEventListener('click', backToHomePage);
+    refs.backButton.addEventListener('click', backToPrevViewPage);
     console.log(refs.backButton);
   });
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
 }
-//=================================================
 
-// const changePageNumber = () => {
-//   const currentPage = initialFetchAPI.page;
+const makePrevViewPage = page => {
+  refs.homePage.innerHTML = '';
+  refs.detailsPage.innerHTML = '';
+  refs.myLibList.innerHTML = '';
 
-//   return (refs.pageButton.textContent = currentPage);
-// };
+  initialFetchAPI.page = page;
 
-// const nextPage = target => {
-//   refs.myLibHome.innerHTML = '';
+  refs.homePage.insertAdjacentHTML('beforeend', homePageMarkup);
+  refs.myLibHome = document.querySelector('#mylib-home');
+  refs.prevButton = document.querySelector('#button-prev');
+  refs.pageButton = document.querySelector('#button-page');
+  refs.nextButton = document.querySelector('#button-next');
 
-//   initialFetchAPI.incrementPage();
-//   console.log(target);
-//   makeOnePage();
-//   changePageNumber();
-// };
+  refs.myLibHome.addEventListener('click', drawMovieDetails);
+  refs.searchInput = document.querySelector('#search-input');
+  refs.searchInput.addEventListener('input', debounce(searchMovies, 500));
+};
 
-// const prevPage = () => {
-//   const currentPage = initialFetchAPI.page;
-
-//   if (currentPage <= 1) {
-//     return;
-//   }
-
-//   refs.myLibHome.innerHTML = '';
-
-//   initialFetchAPI.decrementPage();
-
-//   makeOnePage();
-//   changePageNumber();
-// };
-//=====================================================
-
-const backToHomePage = () => {
-  makeHomePage();
+const backToPrevViewPage = () => {
+  const currentPage = initialFetchAPI.page;
+  console.log(currentPage);
+  makePrevViewPage(currentPage);
   makeOnePage();
-  
-  
-  refs.nextButton.addEventListener('click', nextPage);
-  refs.prevButton.addEventListener('click', prevPage);
+
+  changePageNumber();
 };
 
 export default drawMovieDetails;

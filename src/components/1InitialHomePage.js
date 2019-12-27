@@ -129,4 +129,4 @@ function searchMovies({ target }) {
     });
 }
 
-export { makeHomePage, makeOnePage };
+export { makeHomePage, makeOnePage, searchMovies };
