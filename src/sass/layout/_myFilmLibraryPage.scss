@@ -86,13 +86,13 @@
     }
 
     @media screen and (min-width: 90em) {
-      height: 600px;
-      margin-bottom: 40px;
+      flex-basis: 18%;
     }
 
-    @media screen and (min-width: 100em) {
-      height: 700px;
-      flex-basis: 23%;
+    @media screen and (min-width: 105em) {
+      flex-basis: 17%;
+      height: 700;
+      margin-bottom: 40px;
     }
 
     &__img {

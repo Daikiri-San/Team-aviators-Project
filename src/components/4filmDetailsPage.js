@@ -1,7 +1,9 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import fetchMovieDetails from './services/fetchMovieDetails';
-import { makeOnePage, makeHomePage } from './1InitialHomePage';
+import setLocalStorage from './localStorage/localStorage';
+import homePageMarkup from '../templates/homePageMarkup';
+import { makeOnePage, searchMovies, makeHomePage } from './1InitialHomePage';
 import { changePageNumber } from './2searchAndPlaginationHomePage';
 
 function drawMovieDetails({ target }) {
@@ -11,6 +13,9 @@ function drawMovieDetails({ target }) {
   ) {
     return;
   }
+
+  setLocalStorage(event);
+
   refs.myLibHome.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.innerHTML = '';
