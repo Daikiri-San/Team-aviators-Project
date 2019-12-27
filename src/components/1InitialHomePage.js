@@ -19,8 +19,10 @@ import {
 const debounce = require('lodash.debounce');
 
 function makeHomePage() {
+  refs.homePage.innerHTML = '';
   refs.detailsPage.innerHTML = '';
   refs.myLibList.innerHTML = '';
+  initialFetchAPI.page = 1;
   refs.homePage.insertAdjacentHTML('beforeend', homePageMarkup);
   refs.myLibHome = document.querySelector('#mylib-home');
   refs.prevButton = document.querySelector('#button-prev');
@@ -127,4 +129,4 @@ function searchMovies({ target }) {
     });
 }
 
-export default makeOnePage;
+export { makeHomePage, makeOnePage };

@@ -16,8 +16,7 @@ function drawMovieDetails({ target }) {
   fetchMovieDetails(event).then(movie => {
     refs.detailsPage.insertAdjacentHTML(
       'afterbegin',
-      `<article class="film-details">
-    <img
+      `<img
       class="film-details-image"
       src="http://image.tmdb.org/t/p/w500${movie.poster_path}"
       alt="${movie.title}"
@@ -53,8 +52,7 @@ function drawMovieDetails({ target }) {
     <h3 class="film-details-semititle">About</h3>
     <p class="film-details-text">
       ${movie.overview}
-    </p>
-  </article>`,
+    </p>`,
     );
   });
 
