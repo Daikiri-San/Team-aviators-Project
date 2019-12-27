@@ -1,10 +1,14 @@
 import refs from './utils/refs';
-// import initialFetchAPI from './services/initialFetchApi';
+import initialFetchAPI from './services/initialFetchApi';
 
 import fetchMovieDetails from './services/fetchMovieDetails';
 
 import { makeOnePage, makeHomePage } from './1InitialHomePage';
-// import './2searchAndPlaginationHomePage';
+import {
+  prevPage,
+  nextPage,
+  changePageNumber,
+} from './2searchAndPlaginationHomePage';
 
 function drawMovieDetails({ target }) {
   if (!target.classList.contains('home__list--cover')) {
@@ -64,6 +68,7 @@ function drawMovieDetails({ target }) {
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
 }
+//=================================================
 
 // const changePageNumber = () => {
 //   const currentPage = initialFetchAPI.page;
@@ -71,10 +76,41 @@ function drawMovieDetails({ target }) {
 //   return (refs.pageButton.textContent = currentPage);
 // };
 
+// const nextPage = target => {
+//   refs.myLibHome.innerHTML = '';
+
+//   initialFetchAPI.incrementPage();
+//   console.log(target);
+//   makeOnePage();
+//   changePageNumber();
+// };
+
+// const prevPage = () => {
+//   const currentPage = initialFetchAPI.page;
+
+//   if (currentPage <= 1) {
+//     return;
+//   }
+
+//   refs.myLibHome.innerHTML = '';
+
+//   initialFetchAPI.decrementPage();
+
+//   makeOnePage();
+//   changePageNumber();
+// };
+//=====================================================
+
 const backToHomePage = () => {
   makeHomePage();
   makeOnePage();
   // changePageNumber();
+  const prevButton = document.querySelector('#button-prev');
+  const pageButton = document.querySelector('#button-page');
+  const nextButton = document.querySelector('#button-next');
 };
+
+nextButton.addEventListener('click', nextPage);
+prevButton.addEventListener('click', prevPage);
 
 export default drawMovieDetails;

@@ -8,11 +8,11 @@ const changePageNumber = () => {
   return (refs.pageButton.textContent = currentPage);
 };
 
-const nextPage = () => {
+const nextPage = target => {
   refs.myLibHome.innerHTML = '';
 
   initialFetchAPI.incrementPage();
-
+  console.log(target);
   makeOnePage();
   changePageNumber();
 };
@@ -35,4 +35,4 @@ const prevPage = () => {
 refs.nextButton.addEventListener('click', nextPage);
 refs.prevButton.addEventListener('click', prevPage);
 
-// export default changePageNumber;
+export { prevPage, nextPage, changePageNumber };
