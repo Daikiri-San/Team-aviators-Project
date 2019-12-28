@@ -1,6 +1,7 @@
 import fetchMovieDetails from '../services/fetchMovieDetails';
 
 function setWatchedLocalStorage(e) {
+  console.log(e);
   const newItem = {};
   fetchMovieDetails(e).then(data => {
     newItem.id = data.id;
