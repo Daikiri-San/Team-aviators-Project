@@ -1,4 +1,15 @@
 <li class="home__list-item" data-index="{{id}}">
+    <div class="home__list--cover">
+        <div class="home__list-rate">
+            <p>{{votes}}</p>
+        </div>
+        <h2 class="home__list-header">{{
+            title
+          }} ({{year}})</h2>
+    </div>
+    <img class="home__list-item__img" src="{{
+          poster
+        }}" alt="poster of {{title}}" />
     <div class="home__list--hover">
         <div class="home__list--hover-star home__list--hover-button">
             <i class="far fa-star"></i>
@@ -9,13 +20,4 @@
             <input type="checkbox" id="js-heart-checkbox" name="heart">
         </div>
     </div>
-    <div class="home__list--cover">
-        <div class="home__list-rate">
-            <p>{{votes}}</p>
-        </div>
-        <h2 class="home__list-header">{{
-            title
-        }} ({{year}})</h2>
-    </div>
-    <img class="home__list-item__img" src="{{poster}}" alt="poster of {{title}}" />
 </li>

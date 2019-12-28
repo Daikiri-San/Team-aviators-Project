@@ -29,7 +29,7 @@ function makeHomePage() {
 
   refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.searchInput = document.querySelector('#search-input');
-  refs.searchInput.addEventListener('input', debounce(searchMovies, 500));
+  refs.searchInput.addEventListener('input', debounce(firstSearchMovies, 500));
 }
 
 makeHomePage();
@@ -78,13 +78,17 @@ const makeOnePage = () => {
 
 makeOnePage();
 
+function firstSearchMovies() {
+  searchFetch.page = 1;
+  searchMovies();
+}
+
 function searchMovies() {
   const input = refs.searchInput.value;
   if (input === '') {
     return;
   }
   searchFetch.query = input;
-  // searchFetch.page = 1;
   refs.myLibHome.innerHTML = '';
   changeSearchPageNumber();
   searchFetch
