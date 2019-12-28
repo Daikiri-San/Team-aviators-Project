@@ -25,9 +25,11 @@
 
   &__button-back {
     display: block;
-    width: 94px;
+    width: 88vw;
+    min-width: 300px;
+    max-width: 500px;
     margin: 20px auto 20px;
-    padding: 0;
+    padding: 24px 0px;
     border: none;
     outline: none;
     font-size: $title-font-size;

@@ -6,6 +6,10 @@ import homePageMarkup from '../templates/homePageMarkup';
 import initialFetchAPI from './services/initialFetchApi';
 import drawMovieDetails from './4filmDetailsPage';
 import searchFetch from './services/fetchSearchMovies';
+import {
+  setWatchedLocalStorage,
+  setQueueLocalStorage,
+} from './localStorage/localStorage';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@fortawesome/fontawesome-free/js/all.js';
 import {
@@ -19,10 +23,12 @@ import {
 const debounce = require('lodash.debounce');
 
 function makeHomePage() {
+  refs.homePage.innerHTML = '';
   refs.detailsPage.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.homePage.insertAdjacentHTML('beforeend', homePageMarkup);
   refs.myLibHome = document.querySelector('#mylib-home');
+  refs.paginationSection = document.querySelector('.home__button');
   refs.prevButton = document.querySelector('#button-prev');
   refs.pageButton = document.querySelector('#button-page');
   refs.nextButton = document.querySelector('#button-next');
@@ -54,11 +60,11 @@ const makeOnePage = () => {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
-        <div class="home__list--hover-star home__list--hover-button">
+        <div id="star" class="home__list--hover-star home__list--hover-button">
         <i class="far fa-star"></i>
         <input type="checkbox" id="js-star-checkbox" name="star">
         </div>
-        <div class="home__list--hover-like home__list--hover-button">
+        <div id="heart" class="home__list--hover-like home__list--hover-button">
         <i class="far fa-heart"></i>
         <input type="checkbox" id="js-heart-checkbox" name="heart">
         </div>
@@ -69,12 +75,20 @@ const makeOnePage = () => {
       );
     })
     .then(() => {
+      refs.wathedButton = document.querySelector('#js-star-checkbox');
+      refs.queueButton = document.querySelector('#js-heart-checkbox');
       refs.nextButton.removeEventListener('click', nextSearchPage);
       refs.prevButton.removeEventListener('click', prevSearchPage);
       refs.nextButton.addEventListener('click', nextPage);
       refs.prevButton.addEventListener('click', prevPage);
+      refs.wathedButton.addEventListener('click', test);
+      refs.queueButton.addEventListener('click', test);
     });
 };
+
+function test(e) {
+  console.log(e.target);
+}
 
 makeOnePage();
 
@@ -95,8 +109,16 @@ function searchMovies() {
     .fetchSearchMovies()
     .then(({ results }) => {
       if (results.length === 0) {
-        return;
+        refs.paginationSection.classList.add('hidden');
+        return refs.myLibHome.insertAdjacentHTML(
+          'beforeend',
+          `<div class="no-list">
+          <h2 class="no-list__item">Sorry, no movies found :(</h2>
+            <h3 class="no-list__item">Try another name :)</h3>
+            </div>`,
+        );
       }
+      refs.paginationSection.classList.remove('hidden');
       results.map(result =>
         refs.myLibHome.insertAdjacentHTML(
           'beforeend',

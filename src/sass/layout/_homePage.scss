@@ -12,18 +12,18 @@
 
   &__input {
     color: $main-black-color;
-    font-family: $main-font;
-    font-size: 15px;
+    font-family: $secondary-font;
+    font-size: 20px;
     min-width: 258px;
     line-height: 24px;
     border: none;
     border-bottom: 1px solid $main-black-color;
-    padding: 20px 10px 0;
+    padding: 10px;
 
     &::placeholder {
       color: $main-black-color;
-      font-family: $main-font;
-      font-size: 15px;
+      font-family: $secondary-font;
+      font-size: 18px;
     }
   }
 
@@ -43,6 +43,10 @@
       background-color: $main-white-color;
       box-shadow: 0 0 1px 1px $main-txt-color;
       transition: all 0.3s ease 0s;
+    }
+
+    &-prew,
+    &-next {
       cursor: pointer;
 
       &:hover {
@@ -56,4 +60,8 @@
       width: 48px;
     }
   }
+}
+
+.hidden {
+  display: none;
 }
