@@ -1,6 +1,6 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
-import { makeOnePage } from './1InitialHomePage';
+import { makeOnePage, searchMovies } from './1InitialHomePage';
 import searchFetch from './services/fetchSearchMovies';
 
 const changePageNumber = () => {
@@ -44,12 +44,12 @@ const nextSearchPage = () => {
 
   searchFetch.incrementPage();
 
-  makeOnePage();
+  searchMovies();
   changeSearchPageNumber();
 };
 
 const prevSearchPage = () => {
-  const currentPage = initialFetchAPI.page;
+  const currentPage = searchFetch.page;
 
   if (currentPage <= 1) {
     return;
@@ -59,7 +59,7 @@ const prevSearchPage = () => {
 
   searchFetch.decrementPage();
 
-  makeOnePage();
+  searchMovies();
   changeSearchPageNumber();
 };
 
