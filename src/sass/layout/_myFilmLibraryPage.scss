@@ -15,14 +15,9 @@
     justify-content: space-evenly;
   }
   &--hover {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
+    border: 1px solid $main-black-color;
     border-radius: 10px;
     display: flex;
-    opacity: 0;
     justify-content: space-around;
     align-items: center;
 
