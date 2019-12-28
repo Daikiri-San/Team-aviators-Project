@@ -204,3 +204,18 @@
     transform: scale(1);
   }
 }
+
+.no-list {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__item {
+    margin: 0;
+    font-size: $title-font-size;
+    font-family: $secondary-font;
+    margin-bottom: 10px;
+  }
+}
