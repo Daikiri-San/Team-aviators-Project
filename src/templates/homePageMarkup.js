@@ -4,7 +4,7 @@ const homePageMarkup = `
     id="search-input"
     type=""
     name="query"
-    placeholder="Write movie name and click Enter"
+    placeholder="Write here movie name :)"
     class="home__input"
   />
 </form>

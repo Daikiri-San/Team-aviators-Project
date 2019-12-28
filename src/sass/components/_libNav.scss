@@ -29,3 +29,10 @@
     }
   }
 }
+
+.active-nav-button {
+  border-bottom: none;
+  margin-bottom: 2px;
+  background-color: $main-background-color;
+  color: #f3f6f6;
+}
