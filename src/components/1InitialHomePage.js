@@ -60,6 +60,14 @@ const makeOnePage = () => {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
+<<<<<<< HEAD
+        
+        <div id="star-icon">
+        <img src="https://img.icons8.com/color/40/000000/star--v1.png" alt="" width="40" height="40">
+        </div>
+        <div id="heart-icon">
+        <img src="https://img.icons8.com/color/40/000000/like.png" alt="" width="40" height="40">
+=======
         <div id="star" class="home__list--hover-star home__list--hover-button">
         <i class="far fa-star"></i>
         <input type="checkbox" id="js-star-checkbox" name="star">
@@ -67,7 +75,9 @@ const makeOnePage = () => {
         <div id="heart" class="home__list--hover-like home__list--hover-button">
         <i class="far fa-heart"></i>
         <input type="checkbox" id="js-heart-checkbox" name="heart">
+>>>>>>> 013c080269dbdc26a6bbc642bd44d28da55c59e6
         </div>
+        
         </div>
       </li>
     `,
