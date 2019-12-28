@@ -42,16 +42,6 @@ const makeOnePage = () => {
         refs.myLibHome.insertAdjacentHTML(
           'beforeend',
           `  <li class="home__list-item" data-index="${result.id}">
-        <div class="home__list--hover">
-        <div class="home__list--hover-star home__list--hover-button">
-        <i class="far fa-star"></i>
-        <input type="checkbox" id="js-star-checkbox" name="star">
-        </div>
-        <div class="home__list--hover-like home__list--hover-button">
-        <i class="far fa-heart"></i>
-        <input type="checkbox" id="js-heart-checkbox" name="heart">
-        </div>
-        </div>
         <div class="home__list--cover">
           <div class="home__list-rate">
             <p>${result.vote_average}</p>
@@ -63,12 +53,24 @@ const makeOnePage = () => {
         <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
           result.poster_path
         }" alt="poster of ${result.title}" />
+        <div class="home__list--hover">
+        <div class="home__list--hover-star home__list--hover-button">
+        <i class="far fa-star"></i>
+        <input type="checkbox" id="js-star-checkbox" name="star">
+        </div>
+        <div class="home__list--hover-like home__list--hover-button">
+        <i class="far fa-heart"></i>
+        <input type="checkbox" id="js-heart-checkbox" name="heart">
+        </div>
+        </div>
       </li>
     `,
         ),
       );
     })
     .then(() => {
+      refs.nextButton.removeEventListener('click', nextSearchPage);
+      refs.prevButton.removeEventListener('click', prevSearchPage);
       refs.nextButton.addEventListener('click', nextPage);
       refs.prevButton.addEventListener('click', prevPage);
     });
@@ -76,13 +78,13 @@ const makeOnePage = () => {
 
 makeOnePage();
 
-function searchMovies({ target }) {
-  const input = target.value;
+function searchMovies() {
+  const input = refs.searchInput.value;
   if (input === '') {
     return;
   }
   searchFetch.query = input;
-  searchFetch.page = 1;
+  // searchFetch.page = 1;
   refs.myLibHome.innerHTML = '';
   changeSearchPageNumber();
   searchFetch
@@ -95,16 +97,7 @@ function searchMovies({ target }) {
         refs.myLibHome.insertAdjacentHTML(
           'beforeend',
           `  <li class="home__list-item" data-index="${result.id}">
-        <div class="home__list--hover">
-        <div class="home__list--hover-star home__list--hover-button">
-        <i class="far fa-star"></i>
-        <input type="checkbox" id="js-star-checkbox" name="star">
-        </div>
-        <div class="home__list--hover-like home__list--hover-button">
-        <i class="far fa-heart"></i>
-        <input type="checkbox" id="js-heart-checkbox" name="heart">
-        </div>
-        </div>
+
         <div class="home__list--cover">
           <div class="home__list-rate">
             <p>${result.vote_average}</p>
@@ -116,15 +109,27 @@ function searchMovies({ target }) {
         <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
           result.poster_path
         }" alt="poster of ${result.title}" />
+        <div class="home__list--hover">
+        <div class="home__list--hover-star home__list--hover-button">
+        <i class="far fa-star"></i>
+        <input type="checkbox" id="js-star-checkbox" name="star">
+        </div>
+        <div class="home__list--hover-like home__list--hover-button">
+        <i class="far fa-heart"></i>
+        <input type="checkbox" id="js-heart-checkbox" name="heart">
+        </div>
+        </div>
       </li>
     `,
         ),
       );
     })
     .then(() => {
+      refs.nextButton.removeEventListener('click', nextPage);
+      refs.prevButton.removeEventListener('click', prevPage);
       refs.nextButton.addEventListener('click', nextSearchPage);
       refs.prevButton.addEventListener('click', prevSearchPage);
     });
 }
 
-export default makeOnePage;
+export { makeOnePage, makeHomePage, searchMovies };
