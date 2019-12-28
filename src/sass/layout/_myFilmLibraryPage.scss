@@ -133,30 +133,65 @@
     }
   }
 }
-.fa-star,
-.fa-heart {
-  display: block;
-  position: absolute;
-  margin: 5px auto;
-  color: $main-black-color;
-  font-size: 30px;
-  transition: scale 1s ease-in-out;
+
+#star-icon,
+#heart-icon {
+  cursor: pointer;
 }
 
-.fa-star:hover,
-.fa-heart:hover {
-  animation: scale 1s ease-in-out 0s forwards;
-}
 
-#js-star-checkbox,
-#js-heart-checkbox {
-  display: block;
-  margin: 0 auto;
-  margin-top: 10px;
-  opacity: 0;
-  // width: 40px;
-  // height: 40px;
-}
+// .star-label::after,
+// .heart-label::after {
+//   display: inline-block;
+//   content: '';
+//   width: 40px;
+//   height: 40px;
+//   // margin-right: 12px;
+//   background-repeat: no-repeat;
+//   // background-size: contain;
+//   background-position: center;
+// }
+
+// .star-label::after {
+//   background-image: url('https://img.icons8.com/ios/40/000000/star.png');
+// }
+
+// .star-label > input[type=checbox]:checked .star-label::after {
+//   background-image: url('https://img.icons8.com/color/40/000000/star--v1.png');
+// }
+
+// .heart-label::after {
+//   background-image: url('https://img.icons8.com/ios/40/000000/like.png');
+// }
+
+// .icon-check:checked .heart-label::after {
+//   background-image: url('https://img.icons8.com/color/40/000000/like.png');
+// }
+
+// .fa-star,
+// .fa-heart {
+//   display: block;
+//   position: absolute;
+//   margin: 5px auto;
+//   color: $main-black-color;
+//   font-size: 30px;
+//   transition: scale 1s ease-in-out;
+// }
+
+// .fa-star:hover,
+// .fa-heart:hover {
+//   animation: scale 1s ease-in-out 0s forwards;
+// }
+
+// #js-star-checkbox,
+// #js-heart-checkbox {
+//   display: block;
+//   margin: 0 auto;
+//   margin-top: 10px;
+//   opacity: 0;
+//   // width: 40px;
+//   // height: 40px;
+// }
 
 @keyframes scale {
   0% {
