@@ -20,21 +20,13 @@
     border-radius: 0px 0px 10px 10px;
     border-top: none;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-bottom: 10px;
 
-    &-button {
-      display: block;
-      position: relative;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
+    &-heart {
+      border-bottom-right-radius: 8px;
     }
 
-    &-img {
-      width: 100%;
-      height: auto;
+    &-star {
+      border-bottom-left-radius: 8px;
     }
   }
   &--cover {
@@ -134,11 +126,29 @@
   }
 }
 
-#star-icon,
-#heart-icon {
-  cursor: pointer;
+// #star-icon,
+// #heart-icon {
+//   width: 36px;
+//   height: auto;
+//   cursor: pointer;
+// }
+
+.for_button {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: $title-font-size;
+  font-family: $secondary-font;
+  border: none;
+  background-color: snow;
+  transition: all 0.2s ease-in-out;
 }
 
+.for_button:hover,
+.for_button:focus,
+.for_button:active {
+  background-color: $main-background-color;
+  color: #f3f6f6;
+}
 
 // .star-label::after,
 // .heart-label::after {
@@ -213,7 +223,6 @@
   justify-content: center;
 
   &__item {
-    margin: 0;
     font-size: $title-font-size;
     font-family: $secondary-font;
     margin-bottom: 10px;
