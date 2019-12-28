@@ -40,6 +40,10 @@ function makeHomePage() {
 
 makeHomePage();
 
+function test() {
+  console.log('GOD DAMNIT');
+}
+
 const makeOnePage = () => {
   initialFetchAPI
     .fetchPopularFilms()
@@ -60,24 +64,8 @@ const makeOnePage = () => {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
-<<<<<<< HEAD
-        
-        <div id="star-icon">
-        <img src="https://img.icons8.com/color/40/000000/star--v1.png" alt="" width="40" height="40">
-        </div>
-        <div id="heart-icon">
-        <img src="https://img.icons8.com/color/40/000000/like.png" alt="" width="40" height="40">
-=======
-        <div id="star" class="home__list--hover-star home__list--hover-button">
-        <i class="far fa-star"></i>
-        <input type="checkbox" id="js-star-checkbox" name="star">
-        </div>
-        <div id="heart" class="home__list--hover-like home__list--hover-button">
-        <i class="far fa-heart"></i>
-        <input type="checkbox" id="js-heart-checkbox" name="heart">
->>>>>>> 013c080269dbdc26a6bbc642bd44d28da55c59e6
-        </div>
-        
+        <button id="star-icon" type="button" class="home__list--hover-star for_button">Watched</button>
+        <button id="heart-icon" type="button" class="home__list--hover-heart for_button">Queue</button>
         </div>
       </li>
     `,
@@ -85,8 +73,8 @@ const makeOnePage = () => {
       );
     })
     .then(() => {
-      refs.wathedButton = document.querySelector('#js-star-checkbox');
-      refs.queueButton = document.querySelector('#js-heart-checkbox');
+      refs.wathedButton = document.querySelector('#star-icon');
+      refs.queueButton = document.querySelector('#heart-icon');
       refs.nextButton.removeEventListener('click', nextSearchPage);
       refs.prevButton.removeEventListener('click', prevSearchPage);
       refs.nextButton.addEventListener('click', nextPage);
@@ -96,9 +84,7 @@ const makeOnePage = () => {
     });
 };
 
-function test(e) {
-  console.log(e.target);
-}
+// document.body.addEventListener('click', test);
 
 makeOnePage();
 
@@ -146,14 +132,8 @@ function searchMovies() {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
-        <div class="home__list--hover-star home__list--hover-button">
-        <i class="far fa-star"></i>
-        <input type="checkbox" id="js-star-checkbox" name="star">
-        </div>
-        <div class="home__list--hover-like home__list--hover-button">
-        <i class="far fa-heart"></i>
-        <input type="checkbox" id="js-heart-checkbox" name="heart">
-        </div>
+        <button id="star-icon" type="button" class="home__list--hover-star for_button">Watched</button>
+        <button id="heart-icon" type="button" class="home__list--hover-heart for_button">Queue</button>
         </div>
       </li>
     `,
@@ -161,10 +141,14 @@ function searchMovies() {
       );
     })
     .then(() => {
+      refs.wathedButton = document.querySelector('#star-icon');
+      refs.queueButton = document.querySelector('#heart-icon');
       refs.nextButton.removeEventListener('click', nextPage);
       refs.prevButton.removeEventListener('click', prevPage);
       refs.nextButton.addEventListener('click', nextSearchPage);
       refs.prevButton.addEventListener('click', prevSearchPage);
+      refs.wathedButton.addEventListener('click', test);
+      refs.queueButton.addEventListener('click', test);
     });
 }
 
