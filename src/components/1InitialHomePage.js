@@ -34,15 +34,12 @@ function makeHomePage() {
   refs.nextButton = document.querySelector('#button-next');
 
   refs.myLibHome.addEventListener('click', drawMovieDetails);
+  refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.searchInput = document.querySelector('#search-input');
   refs.searchInput.addEventListener('input', debounce(firstSearchMovies, 500));
 }
 
 makeHomePage();
-
-function test() {
-  console.log('GOD DAMNIT');
-}
 
 const makeOnePage = () => {
   initialFetchAPI
@@ -64,8 +61,8 @@ const makeOnePage = () => {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
-        <button id="star-icon" type="button" class="home__list--hover-star for_button">Watched</button>
-        <button id="heart-icon" type="button" class="home__list--hover-heart for_button">Queue</button>
+        <button  type="button" class="home__list--hover-star for_button">Watched</button>
+        <button  type="button" class="home__list--hover-heart for_button">Queue</button>
         </div>
       </li>
     `,
@@ -73,18 +70,23 @@ const makeOnePage = () => {
       );
     })
     .then(() => {
-      refs.wathedButton = document.querySelector('#star-icon');
-      refs.queueButton = document.querySelector('#heart-icon');
       refs.nextButton.removeEventListener('click', nextSearchPage);
       refs.prevButton.removeEventListener('click', prevSearchPage);
       refs.nextButton.addEventListener('click', nextPage);
       refs.prevButton.addEventListener('click', prevPage);
-      refs.wathedButton.addEventListener('click', test);
-      refs.queueButton.addEventListener('click', test);
+      refs.myLibHome.addEventListener('click', ToLocalStorage);
     });
 };
 
-// document.body.addEventListener('click', test);
+function ToLocalStorage({ target }) {
+  if (target.classList.contains('home__list--hover-star')) {
+    setWatchedLocalStorage(event);
+  } else if (target.classList.contains('home__list--hover-heart')) {
+    setQueueLocalStorage(event);
+  } else {
+    return;
+  }
+}
 
 makeOnePage();
 
@@ -141,14 +143,11 @@ function searchMovies() {
       );
     })
     .then(() => {
-      refs.wathedButton = document.querySelector('#star-icon');
-      refs.queueButton = document.querySelector('#heart-icon');
       refs.nextButton.removeEventListener('click', nextPage);
       refs.prevButton.removeEventListener('click', prevPage);
       refs.nextButton.addEventListener('click', nextSearchPage);
       refs.prevButton.addEventListener('click', prevSearchPage);
-      refs.wathedButton.addEventListener('click', test);
-      refs.queueButton.addEventListener('click', test);
+      refs.myLibHome.addEventListener('click', ToLocalStorage);
     });
 }
 
