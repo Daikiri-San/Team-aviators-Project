@@ -3,7 +3,12 @@
   // min-height: 85px;
   line-height: 77px;
 
+  &__license {
+    text-align: center;
+  }
+
   &__link-author {
+    display: inline-block;
     font-family: $main-font;
     font-size: 16px;
     color: $main-txt-color;
