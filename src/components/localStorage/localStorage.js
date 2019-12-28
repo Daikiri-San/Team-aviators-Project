@@ -10,8 +10,13 @@ function setWatchedLocalStorage(e) {
     newItem.votes = data.vote_average;
     newItem.year = data.release_date.slice(0, 4);
     const oldItems = JSON.parse(localStorage.getItem('watched')) || [];
-    oldItems.push(newItem);
-    localStorage.setItem('watched', JSON.stringify(oldItems));
+
+    const idNewElements = oldItems.map(({ id }) => id);
+
+    if (!idNewElements.includes(data.id)) {
+      oldItems.push(newItem);
+      localStorage.setItem('watched', JSON.stringify(oldItems));
+    }
   });
 }
 
@@ -24,6 +29,10 @@ function setQueueLocalStorage(e) {
     newItem.votes = data.vote_average;
     newItem.year = data.release_date.slice(0, 4);
     const oldItems = JSON.parse(localStorage.getItem('queue')) || [];
+    const idNewElements = oldItems.map(({ id }) => id);
+    if (idNewElements.includes(data.id)) {
+      return;
+    }
     oldItems.push(newItem);
     localStorage.setItem('queue', JSON.stringify(oldItems));
   });
