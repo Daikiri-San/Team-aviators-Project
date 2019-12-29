@@ -19,6 +19,7 @@ import {
   prevSearchPage,
   changeSearchPageNumber,
 } from './2searchAndPlaginationHomePage';
+import { changePageNumber } from './2searchAndPlaginationHomePage';
 
 const debounce = require('lodash.debounce');
 
@@ -34,7 +35,7 @@ function makeHomePage() {
   refs.nextButton = document.querySelector('#button-next');
 
   refs.myLibHome.addEventListener('click', drawMovieDetails);
-  refs.myLibHome.addEventListener('click', drawMovieDetails);
+  // refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.searchInput = document.querySelector('#search-input');
   refs.searchInput.addEventListener('input', debounce(firstSearchMovies, 500));
 }
@@ -90,13 +91,20 @@ function ToLocalStorage({ target }) {
 
 makeOnePage();
 
+let typeOfQueueForBack = {
+  listType: makeOnePage,
+  counterType: changePageNumber,
+};
+
 function firstSearchMovies() {
   searchFetch.page = 1;
   searchMovies();
+  typeOfQueueForBack.listType = searchMovies;
+  typeOfQueueForBack.counterType = changeSearchPageNumber;
 }
 
 function searchMovies() {
-  const input = refs.searchInput.value;
+  const input = refs.searchInput.value || searchFetch.query;
   if (input === '') {
     return;
   }
@@ -151,4 +159,4 @@ function searchMovies() {
     });
 }
 
-export { makeOnePage, makeHomePage, searchMovies };
+export { makeOnePage, makeHomePage, searchMovies, typeOfQueueForBack };
