@@ -3,9 +3,7 @@ const baseURL = 'https://api.themoviedb.org/3/movie';
 
 function fetchMovieDetails({ target }) {
   return fetch(
-    `${baseURL}/${
-      target.closest('.home__list-item').dataset.index
-    }?api_key=${key}`,
+    `${baseURL}/${target.closest('.forJS').dataset.index}?api_key=${key}`,
   )
     .then(res => res.json())
     .catch(console.log);

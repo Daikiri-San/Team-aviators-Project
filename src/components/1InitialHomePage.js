@@ -34,9 +34,8 @@ function makeHomePage() {
   refs.nextButton = document.querySelector('#button-next');
 
   refs.myLibHome.addEventListener('click', drawMovieDetails);
-  refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.searchInput = document.querySelector('#search-input');
-  refs.searchInput.addEventListener('input', debounce(firstSearchMovies, 500));
+  refs.searchInput.addEventListener('input', debounce(firstSearchMovies, 600));
 }
 
 makeHomePage();
@@ -48,7 +47,7 @@ const makeOnePage = () => {
       results.map(result =>
         refs.myLibHome.insertAdjacentHTML(
           'beforeend',
-          `  <li class="home__list-item" data-index="${result.id}">
+          `  <li class="home__list-item forJS" data-index="${result.id}">
         <div class="home__list--cover">
           <div class="home__list-rate">
             <p>${result.vote_average}</p>
@@ -61,8 +60,8 @@ const makeOnePage = () => {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
-        <button  type="button" class="home__list--hover-star for_button">Watched</button>
-        <button  type="button" class="home__list--hover-heart for_button">Queue</button>
+        <button type="button" class="home__list--hover-star for_button">Watched</button>
+        <button type="button" class="home__list--hover-heart for_button">Queue</button>
         </div>
       </li>
     `,
@@ -120,7 +119,7 @@ function searchMovies() {
       results.map(result =>
         refs.myLibHome.insertAdjacentHTML(
           'beforeend',
-          `  <li class="home__list-item" data-index="${result.id}">
+          `  <li class="home__list-item forJS" data-index="${result.id}">
 
         <div class="home__list--cover">
           <div class="home__list-rate">
@@ -134,8 +133,8 @@ function searchMovies() {
           result.poster_path
         }" alt="poster of ${result.title}" />
         <div class="home__list--hover">
-        <button id="star-icon" type="button" class="home__list--hover-star for_button">Watched</button>
-        <button id="heart-icon" type="button" class="home__list--hover-heart for_button">Queue</button>
+        <button type="button" class="home__list--hover-star for_button">Watched</button>
+        <button type="button" class="home__list--hover-heart for_button">Queue</button>
         </div>
       </li>
     `,
@@ -151,4 +150,4 @@ function searchMovies() {
     });
 }
 
-export { makeOnePage, makeHomePage, searchMovies };
+export { makeOnePage, makeHomePage, searchMovies, ToLocalStorage };

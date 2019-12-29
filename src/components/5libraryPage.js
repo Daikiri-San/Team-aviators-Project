@@ -2,6 +2,7 @@ import myLibPageMarkup from '../templates/myLibPageMarkup';
 import refs from './utils/refs';
 import filmListMarkup from '..//templates/filmListMarkup.hbs';
 import drawMovieDetails from './4filmDetailsPage';
+import { ToLocalStorage } from './1InitialHomePage';
 
 function makeLibPage() {
   refs.homePage.innerHTML = '';
@@ -18,6 +19,7 @@ function makeLibPage() {
   refs.watchedButton.addEventListener('click', makeListOfWatched);
   refs.queueButton.addEventListener('click', makeListOfQueue);
   refs.myLibHome.addEventListener('click', drawMovieDetails);
+  refs.myLibHome.addEventListener('click', ToLocalStorage);
 }
 
 function makeListOfWatched() {

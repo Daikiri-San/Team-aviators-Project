@@ -1,7 +1,10 @@
 import fetchMovieDetails from '../services/fetchMovieDetails';
+import pnotifyAddToQueue from '../vendors/pnotifyAddToQueue';
+import pnotifyAddToWatched from '../vendors/pnotifyAddToWatched';
+import pnotifyRemoveFromQueue from '../vendors/pnotifyRemoveFromQueue';
+import pnotifyRemoveFromWatched from '../vendors/pnotifyRemoveFromWatched';
 
 function setWatchedLocalStorage(e) {
-  console.log(e);
   const newItem = {};
   fetchMovieDetails(e).then(data => {
     newItem.id = data.id;
@@ -11,12 +14,16 @@ function setWatchedLocalStorage(e) {
     newItem.year = data.release_date.slice(0, 4);
     const oldItems = JSON.parse(localStorage.getItem('watched')) || [];
 
-    const idNewElements = oldItems.map(({ id }) => id);
+    const idOfOldItems = oldItems.map(({ id }) => id);
 
-    if (!idNewElements.includes(data.id)) {
-      oldItems.push(newItem);
-      localStorage.setItem('watched', JSON.stringify(oldItems));
+    if (idOfOldItems.includes(data.id)) {
+      const filteredItems = oldItems.filter(obj => obj.id !== data.id);
+      localStorage.setItem('watched', JSON.stringify(filteredItems));
+      return pnotifyRemoveFromWatched(data.title);
     }
+    oldItems.push(newItem);
+    localStorage.setItem('watched', JSON.stringify(oldItems));
+    pnotifyAddToWatched(data.title);
   });
 }
 
@@ -29,12 +36,16 @@ function setQueueLocalStorage(e) {
     newItem.votes = data.vote_average;
     newItem.year = data.release_date.slice(0, 4);
     const oldItems = JSON.parse(localStorage.getItem('queue')) || [];
-    const idNewElements = oldItems.map(({ id }) => id);
-    if (idNewElements.includes(data.id)) {
-      return;
+    const idOfOldItems = oldItems.map(({ id }) => id);
+
+    if (idOfOldItems.includes(data.id)) {
+      const filteredItems = oldItems.filter(obj => obj.id !== data.id);
+      localStorage.setItem('queue', JSON.stringify(filteredItems));
+      return pnotifyRemoveFromQueue(data.title);
     }
     oldItems.push(newItem);
     localStorage.setItem('queue', JSON.stringify(oldItems));
+    pnotifyAddToQueue(data.title);
   });
 }
 
