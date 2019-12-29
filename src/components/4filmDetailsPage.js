@@ -1,8 +1,7 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import fetchMovieDetails from './services/fetchMovieDetails';
-import { makeOnePage, makeHomePage } from './1InitialHomePage';
-import { changePageNumber } from './2searchAndPlaginationHomePage';
+import { makeHomePage, typeOfQueueForBack } from './1InitialHomePage';
 import {
   setWatchedLocalStorage,
   setQueueLocalStorage,
@@ -75,10 +74,10 @@ function drawMovieDetails({ target }) {
 
 const backToPrevViewPage = () => {
   const currentPage = initialFetchAPI.page;
-  makeHomePage(currentPage);
-  makeOnePage();
-
-  changePageNumber();
+  makeHomePage();
+  typeOfQueueForBack.listType();
+  console.log(typeOfQueueForBack.listType);
+  typeOfQueueForBack.counterType();
 };
 
 function ToLocalStorageFromDetailsPage({ target }) {

@@ -2,22 +2,32 @@ import myLibPageMarkup from '../templates/myLibPageMarkup';
 import refs from './utils/refs';
 import filmListMarkup from '..//templates/filmListMarkup.hbs';
 import drawMovieDetails from './4filmDetailsPage';
+<<<<<<< HEAD
 import { ToLocalStorage } from './1InitialHomePage';
+=======
+import { typeOfQueueForBack } from './1InitialHomePage';
+>>>>>>> b9340b0e8ed70e3caed56e6cc229543eb0d8ae26
 
 function makeLibPage() {
   refs.homePage.innerHTML = '';
   refs.detailsPage.innerHTML = '';
   refs.myLibList.innerHTML = '';
   refs.myLibList.insertAdjacentHTML('beforeend', myLibPageMarkup);
-
   refs.watchedButton = document.querySelector('#watched-button');
   refs.queueButton = document.querySelector('#queue-button');
   refs.myLibHome = document.querySelector('#mylib-home');
 
   makeListOfWatched();
+  typeOfQueueForBack.listType = makeLibPage;
 
-  refs.watchedButton.addEventListener('click', makeListOfWatched);
-  refs.queueButton.addEventListener('click', makeListOfQueue);
+  refs.watchedButton.addEventListener('click', () => {
+    makeListOfWatched();
+    typeOfQueueForBack.listType = makeLibPage;
+  });
+  refs.queueButton.addEventListener('click', () => {
+    makeListOfQueue();
+    typeOfQueueForBack.listType = makeListOfQueue;
+  });
   refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.myLibHome.addEventListener('click', ToLocalStorage);
 }
