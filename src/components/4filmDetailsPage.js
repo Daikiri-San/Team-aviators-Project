@@ -1,12 +1,11 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import fetchMovieDetails from './services/fetchMovieDetails';
+import { makeHomePage, typeOfQueueForBack } from './1InitialHomePage';
 import {
-  makeOnePage,
-  makeHomePage,
-  typeOfQueueForBack,
-} from './1InitialHomePage';
-import searchFetch from './services/fetchSearchMovies';
+  setWatchedLocalStorage,
+  setQueueLocalStorage,
+} from './localStorage/localStorage';
 
 function drawMovieDetails({ target }) {
   if (
@@ -55,14 +54,19 @@ function drawMovieDetails({ target }) {
         </div>
       </li>
     </ul>
-    <h3 class="film-details-semititle">About</h3>
+    <h3 class="film-details-semititle forJS" >About</h3>
     <p class="film-details-text">
       ${movie.overview}
     </p>
+    <div class="forJS film-details--hover" data-index="${movie.id}">
+    <button type="button" class="film-details--hover-star for_details-button">Watched</button>
+    <button type="button" class="film-details--hover-heart for_details-button">Queue</button>
+    </div>
     <button type="button" id="button-back" class="btn film-details__button-back">Back</button>`,
     );
     refs.backButton = document.querySelector('#button-back');
     refs.backButton.addEventListener('click', backToPrevViewPage);
+    refs.detailsPage.addEventListener('click', ToLocalStorageFromDetailsPage);
   });
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
@@ -72,8 +76,17 @@ const backToPrevViewPage = () => {
   const currentPage = initialFetchAPI.page;
   makeHomePage();
   typeOfQueueForBack.listType();
-  console.log(typeOfQueueForBack.listType);
   typeOfQueueForBack.counterType();
 };
+
+function ToLocalStorageFromDetailsPage({ target }) {
+  if (target.classList.contains('film-details--hover-star')) {
+    setWatchedLocalStorage(event);
+  } else if (target.classList.contains('film-details--hover-heart')) {
+    setQueueLocalStorage(event);
+  } else {
+    return;
+  }
+}
 
 export default drawMovieDetails;

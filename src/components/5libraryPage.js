@@ -2,6 +2,7 @@ import myLibPageMarkup from '../templates/myLibPageMarkup';
 import refs from './utils/refs';
 import filmListMarkup from '..//templates/filmListMarkup.hbs';
 import drawMovieDetails from './4filmDetailsPage';
+import { ToLocalStorage } from './1InitialHomePage';
 import { typeOfQueueForBack } from './1InitialHomePage';
 
 function makeLibPage() {
@@ -22,9 +23,10 @@ function makeLibPage() {
   });
   refs.queueButton.addEventListener('click', () => {
     makeListOfQueue();
-    typeOfQueueForBack.listType = makeListOfQueue;
+    typeOfQueueForBack.listType = makeLibPage;
   });
   refs.myLibHome.addEventListener('click', drawMovieDetails);
+  refs.myLibHome.addEventListener('click', ToLocalStorage);
 }
 
 function makeListOfWatched() {
@@ -32,7 +34,7 @@ function makeListOfWatched() {
   refs.queueButton.classList.remove('active-nav-button');
   refs.watchedButton.classList.add('active-nav-button');
   const fromLocalStorage = JSON.parse(localStorage.getItem('watched'));
-  if (fromLocalStorage === null) {
+  if (fromLocalStorage === null || fromLocalStorage.length === 0) {
     return refs.myLibHome.insertAdjacentHTML(
       'beforeend',
       `<div class="no-list">
@@ -52,7 +54,8 @@ function makeListOfQueue() {
   refs.watchedButton.classList.remove('active-nav-button');
   refs.queueButton.classList.add('active-nav-button');
   const fromLocalStorage = JSON.parse(localStorage.getItem('queue'));
-  if (fromLocalStorage === null) {
+  console.log(fromLocalStorage);
+  if (fromLocalStorage === null || fromLocalStorage.length === 0) {
     return refs.myLibHome.insertAdjacentHTML(
       'beforeend',
       `<div class="no-list">

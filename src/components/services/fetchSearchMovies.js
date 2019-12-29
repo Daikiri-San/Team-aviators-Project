@@ -5,7 +5,6 @@ const searchFetch = {
   query: '',
   page: 1,
   fetchSearchMovies() {
-    console.log(this.page);
     return fetch(
       `${baseURL}?api_key=${key}&page=${this.page}&query=${this.query}`,
     )
