@@ -16,7 +16,7 @@ function pnotifyAddToWatched(title) {
     title: 'Hey :)',
     text: `You just removed "${title}" from your queue list!`,
     type: 'info',
-    stack: window.stackBottomLeft,
+    stack: window.stackBottomRight,
     modules: {
       Desktop: {
         desktop: true,

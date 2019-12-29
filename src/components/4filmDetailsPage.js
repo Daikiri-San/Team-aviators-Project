@@ -76,7 +76,6 @@ const backToPrevViewPage = () => {
   const currentPage = initialFetchAPI.page;
   makeHomePage();
   typeOfQueueForBack.listType();
-  console.log(typeOfQueueForBack.listType);
   typeOfQueueForBack.counterType();
 };
 

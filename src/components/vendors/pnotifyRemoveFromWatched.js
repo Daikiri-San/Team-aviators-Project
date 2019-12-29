@@ -16,7 +16,7 @@ function pnotifyAddToWatched(title) {
     title: 'Okey :)',
     text: `So "${title}" is not anymore in your wathed list!`,
     type: 'info',
-    stack: window.stackBottomLeft,
+    stack: window.stackBottomRight,
     modules: {
       Desktop: {
         desktop: true,

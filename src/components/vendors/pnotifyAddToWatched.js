@@ -16,7 +16,7 @@ function pnotifyAddToWatched(title) {
     title: 'Congrats! :)',
     text: `You have added "${title}" to the watched list!`,
     type: 'success',
-    stack: window.stackBottomLeft,
+    stack: window.stackBottomRight,
     modules: {
       Desktop: {
         desktop: true,
