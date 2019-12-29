@@ -1,7 +1,9 @@
 import PNotify from 'pnotify/dist/es/PNotify';
 import 'pnotify/dist/es/PNotifyStyleMaterial';
 
-PNotify.defaults.width = '420px';
+PNotify.defaults.minWidth = '280px';
+PNotify.defaults.width = '80%';
+PNotify.defaults.mWidth = '420px';
 
 function pnotifyAddToWatched(title) {
   if (typeof window.stackBottomRight === 'undefined') {
