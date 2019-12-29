@@ -1,0 +1,24 @@
+.scroll__button {
+  position: fixed;
+  bottom: 12px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  color: $main-txt-color;
+  background-color: $main-background-color;
+  background-image: url(../images/footer/uparrow.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0 0 2px 2px $main-txt-color;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+
+  &:hover {
+    background-color: #7ed1cd;
+    box-shadow: 0 0 5px 5px #273b3a;
+    color: $main-white-color;
+  }
+}

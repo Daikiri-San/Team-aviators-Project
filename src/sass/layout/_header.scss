@@ -1,0 +1,54 @@
+.container {
+  font-family: $main-font;
+  font-size: $main-font-size;
+  background-color: $main-background-color;
+}
+
+/* HEADER */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    line-height: 55px;
+  }
+
+  &__link {
+    text-transform: uppercase;
+    font-size: $main-font-size;
+    color: $main-txt-color;
+    transition: color 0.2s linear;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $main-black-color;
+      font-family: $secondary-font;
+    }
+
+    &::after {
+      position: relative;
+      content: '';
+      display: block;
+      height: 3px;
+      width: 122px;
+      background: $main-black-color;
+      visibility: hidden;
+      transition: visibility 0.1s linear;
+    }
+
+    &:hover::after,
+    &:focus::after,
+    &:active::after {
+      visibility: visible;
+    }
+  }
+}

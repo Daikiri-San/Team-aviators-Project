@@ -1,0 +1,29 @@
+<li class="home__list-item" data-index="${result.id}">
+    <div class="home__list--cover">
+        <div class="home__list-rate">
+            <p>${{result.vote_average}}</p>
+        </div>
+        <h2 class="home__list-header">{{
+            result.title
+          }} ({{result.release_date}})</h2>
+    </div>
+    <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500${
+          result.poster_path
+        }" alt="poster of ${result.title}" />
+    <div class="home__list--hover">
+        <div class="home__list--hover-star home__list--hover-button">
+            {{!-- <i class="far fa-star"></i> --}}
+            <input type="checkbox" id="js-star-checkbox" name="star">
+            <label for="star" class="star-label">
+                <span class="star-label-item"></span>
+            </label>
+        </div>
+        <div class="home__list--hover-like home__list--hover-button">
+            {{!-- <i class="far fa-heart"></i> --}}
+            <input type="checkbox" id="js-heart-checkbox" name="heart">
+            <label for="heart" class="heart-label">
+                <span class="heart-label-item"></span>
+            </label>
+        </div>
+    </div>
+</li>
