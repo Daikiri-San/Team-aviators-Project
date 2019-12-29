@@ -1,8 +1,12 @@
 import refs from './utils/refs';
 import initialFetchAPI from './services/initialFetchApi';
 import fetchMovieDetails from './services/fetchMovieDetails';
-import { makeOnePage, makeHomePage } from './1InitialHomePage';
-import { changePageNumber } from './2searchAndPlaginationHomePage';
+import {
+  makeOnePage,
+  makeHomePage,
+  typeOfQueueForBack,
+} from './1InitialHomePage';
+import searchFetch from './services/fetchSearchMovies';
 
 function drawMovieDetails({ target }) {
   if (
@@ -66,10 +70,10 @@ function drawMovieDetails({ target }) {
 
 const backToPrevViewPage = () => {
   const currentPage = initialFetchAPI.page;
-  makeHomePage(currentPage);
-  makeOnePage();
-
-  changePageNumber();
+  makeHomePage();
+  typeOfQueueForBack.listType();
+  console.log(typeOfQueueForBack.listType);
+  typeOfQueueForBack.counterType();
 };
 
 export default drawMovieDetails;
