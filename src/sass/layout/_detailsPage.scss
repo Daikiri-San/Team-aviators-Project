@@ -1,0 +1,115 @@
+.film-details {
+  width: 88vw;
+  min-width: 300px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  &-title {
+    font-family: $secondary-font;
+    font-size: $title-font-size;
+  }
+
+  &-image {
+    margin: 24px 0px;
+  }
+
+  &-semititle {
+    font-size: $title-font-size;
+  }
+
+  &-text {
+    font-family: $main-font;
+    font-size: $main-font-size;
+    color: $secondary-font-color;
+    margin-bottom: 20px;
+  }
+
+  &--hover {
+    background-color: snow;
+    border: 1px solid $main-black-color;
+    border-radius: 10px 10px 10px 10px;
+    display: flex;
+
+    &-heart {
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    &-star {
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+  }
+
+  &__button-back {
+    display: block;
+    width: 88vw;
+    min-width: 300px;
+    max-width: 500px;
+    margin: 20px auto 20px;
+    padding: 24px 0px;
+    outline: none;
+    border: 1px solid $main-black-color;
+    font-size: $title-font-size;
+    font-weight: 800;
+    border-radius: 8px;
+    background-color: $main-white-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $main-background-color;
+      color: #f3f6f6;
+      transition: all 0.3s ease 0s;
+    }
+    &:active {
+      background-color: $main-background-color;
+      color: #f3f6f6;
+      box-shadow: 0 0 3px 3px #273b3a;
+    }
+  }
+}
+
+.film-info {
+  margin-bottom: 40px;
+  list-style: none;
+
+  &-item {
+    display: flex;
+    justify-content: space-evenly;
+
+    &__note {
+      display: inline-block;
+      font-family: $main-font;
+      font-size: 13px;
+      line-height: 27px;
+      width: 40%;
+      color: $secondary-font-color;
+    }
+  }
+}
+
+.green-item {
+  background-color: $secondary-background-color;
+}
+
+.first-none {
+  margin-left: 10px;
+}
+
+.for_details-button {
+  flex-grow: 1;
+  font-weight: 500;
+  padding: 24px 10px;
+  font-size: $title-font-size;
+  font-family: $secondary-font;
+  border: none;
+  background-color: snow;
+  transition: all 0.2s ease-in-out;
+}
+
+.for_details-button:hover,
+.for_details-button:focus,
+.for_details-button:active {
+  background-color: $main-background-color;
+  color: #f3f6f6;
+}

@@ -1,0 +1,21 @@
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  font-family: $main-font;
+  font-size: $main-font-size;
+  background-color: $main-background-color;
+  line-height: 77px;
+
+  &__license {
+    text-align: center;
+  }
+
+  &__link-author {
+    display: inline-block;
+    font-family: $main-font;
+    font-size: 16px;
+    color: $main-txt-color;
+  }
+}

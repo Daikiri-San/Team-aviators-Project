@@ -1,0 +1,17 @@
+<li class="home__list-item forJS" data-index="{{id}}">
+    <div class="home__list--cover">
+        <div class="home__list-rate">
+            <p>{{vote_average}}</p>
+        </div>
+        <h2 class="home__list-header">{{
+            title
+          }} ({{slice release_date}})</h2>
+    </div>
+    <img class="home__list-item__img" src="http://image.tmdb.org/t/p/w500{{
+          poster_path
+        }}" alt="poster of {{title}}" />
+    <div class="home__list--hover">
+        <button type="button" class="home__list--hover-star for_button">Watched</button>
+        <button type="button" class="home__list--hover-heart for_button">Queue</button>
+    </div>
+</li>
