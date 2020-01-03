@@ -1,8 +1,5 @@
 import fetchMovieDetails from '../services/fetchMovieDetails';
-import pnotifyAddToQueue from '../vendors/pnotifyAddToQueue';
-import pnotifyAddToWatched from '../vendors/pnotifyAddToWatched';
-import pnotifyRemoveFromQueue from '../vendors/pnotifyRemoveFromQueue';
-import pnotifyRemoveFromWatched from '../vendors/pnotifyRemoveFromWatched';
+import pnotifyAlert from '../vendors/pnotifyAlert';
 
 function setWatchedLocalStorage(e) {
   const newItem = {};
@@ -19,11 +16,11 @@ function setWatchedLocalStorage(e) {
     if (idOfOldItems.includes(data.id)) {
       const filteredItems = oldItems.filter(obj => obj.id !== data.id);
       localStorage.setItem('watched', JSON.stringify(filteredItems));
-      return pnotifyRemoveFromWatched(data.title);
+      return pnotifyAlert('removeWatched', data.title);
     }
     oldItems.push(newItem);
     localStorage.setItem('watched', JSON.stringify(oldItems));
-    pnotifyAddToWatched(data.title);
+    pnotifyAlert('addWatched', data.title);
   });
 }
 
@@ -41,11 +38,11 @@ function setQueueLocalStorage(e) {
     if (idOfOldItems.includes(data.id)) {
       const filteredItems = oldItems.filter(obj => obj.id !== data.id);
       localStorage.setItem('queue', JSON.stringify(filteredItems));
-      return pnotifyRemoveFromQueue(data.title);
+      return pnotifyAlert('removeQueue', data.title);
     }
     oldItems.push(newItem);
     localStorage.setItem('queue', JSON.stringify(oldItems));
-    pnotifyAddToQueue(data.title);
+    pnotifyAlert('addQueue', data.title);
   });
 }
 
