@@ -22,6 +22,11 @@ import {
 import { changePageNumber } from './2searchAndPlaginationHomePage';
 
 const debounce = require('lodash.debounce');
+const Handlebars = require('handlebars');
+
+Handlebars.registerHelper('slice', function(aString) {
+  return aString.slice(0, 4);
+});
 
 function makeHomePage() {
   refs.homePage.innerHTML = '';
@@ -158,5 +163,10 @@ function searchMovies() {
     });
 }
 
-export { makeOnePage, makeHomePage, searchMovies, ToLocalStorage, typeOfQueueForBack };
-
+export {
+  makeOnePage,
+  makeHomePage,
+  searchMovies,
+  ToLocalStorage,
+  typeOfQueueForBack,
+};

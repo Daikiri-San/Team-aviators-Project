@@ -1,12 +1,7 @@
-.container {
+.header {
   font-family: $main-font;
   font-size: $main-font-size;
   background-color: $main-background-color;
-}
-
-/* HEADER */
-
-.header {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;

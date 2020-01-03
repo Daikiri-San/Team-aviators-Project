@@ -1,6 +1,6 @@
 import myLibPageMarkup from '../templates/myLibPageMarkup';
 import refs from './utils/refs';
-import filmListMarkup from '..//templates/filmListMarkup.hbs';
+import filmListMarkupFromLocalStor from '..//templates/filmListMarkupFromLocalStor.hbs';
 import drawMovieDetails from './4filmDetailsPage';
 import { ToLocalStorage } from './1InitialHomePage';
 import { typeOfQueueForBack } from './1InitialHomePage';
@@ -44,7 +44,7 @@ function makeListOfWatched() {
     );
   }
   const markup = fromLocalStorage
-    .map(result => filmListMarkup(result))
+    .map(result => filmListMarkupFromLocalStor(result))
     .join('');
   refs.myLibHome.insertAdjacentHTML('beforeend', markup);
 }
@@ -65,7 +65,7 @@ function makeListOfQueue() {
     );
   }
   const markup = fromLocalStorage
-    .map(result => filmListMarkup(result))
+    .map(result => filmListMarkupFromLocalStor(result))
     .join('');
   refs.myLibHome.insertAdjacentHTML('beforeend', markup);
 }
