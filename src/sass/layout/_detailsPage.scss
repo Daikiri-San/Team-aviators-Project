@@ -25,7 +25,6 @@
   }
 
   &--hover {
-    background-color: snow;
     border: 1px solid $main-black-color;
     border-radius: 10px 10px 10px 10px;
     display: flex;
@@ -103,13 +102,11 @@
   font-size: $title-font-size;
   font-family: $secondary-font;
   border: none;
-  background-color: snow;
   transition: all 0.2s ease-in-out;
 }
 
 .for_details-button:hover,
-.for_details-button:focus,
-.for_details-button:active {
+.for_details-button:focus {
   background-color: $main-background-color;
   color: #f3f6f6;
 }

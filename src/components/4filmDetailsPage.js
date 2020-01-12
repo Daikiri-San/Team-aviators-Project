@@ -6,6 +6,11 @@ import {
   setWatchedLocalStorage,
   setQueueLocalStorage,
 } from './localStorage/localStorage';
+import {
+  activeToggle,
+  detailsPageButtonCheckWatch,
+  detailsPageButtonCheckQueue,
+} from './view/buttonCheck';
 
 function drawMovieDetails({ target }) {
   if (
@@ -65,8 +70,12 @@ function drawMovieDetails({ target }) {
     <button type="button" id="button-back" class="btn film-details__button-back">Back</button>`,
     );
     refs.backButton = document.querySelector('#button-back');
+    refs.forMyLibButtons = document.querySelector('.film-details--hover');
     refs.backButton.addEventListener('click', backToPrevViewPage);
     refs.detailsPage.addEventListener('click', ToLocalStorageFromDetailsPage);
+    refs.forMyLibButtons.addEventListener('click', activeToggle);
+    detailsPageButtonCheckWatch(refs.forMyLibButtons);
+    detailsPageButtonCheckQueue(refs.forMyLibButtons);
   });
 
   refs.myLibHome.removeEventListener('click', fetchMovieDetails);
