@@ -4,6 +4,11 @@ import filmListMarkupFromLocalStor from '..//templates/filmListMarkupFromLocalSt
 import drawMovieDetails from './4filmDetailsPage';
 import { ToLocalStorage } from './1InitialHomePage';
 import { typeOfQueueForBack } from './1InitialHomePage';
+import {
+  buttonCheckWatched,
+  buttonCheckQueue,
+  activeToggle,
+} from './view/buttonCheck';
 
 function makeLibPage() {
   refs.homePage.innerHTML = '';
@@ -47,6 +52,20 @@ function makeListOfWatched() {
     .map(result => filmListMarkupFromLocalStor(result))
     .join('');
   refs.myLibHome.insertAdjacentHTML('beforeend', markup);
+  refs.myLibHome.addEventListener('click', activeToggle);
+  refs.movieItems = document.querySelectorAll('.home__list-item');
+
+  const storageWatchedItems = JSON.parse(localStorage.getItem('watched')) || [];
+  const storageQueueItems = JSON.parse(localStorage.getItem('queue')) || [];
+  const idOfWathcedItems = storageWatchedItems.map(({ id }) => id);
+  const idOfQueueItems = storageQueueItems.map(({ id }) => id);
+  const arrayOfMovieItems = Array.from(refs.movieItems);
+
+  arrayOfMovieItems.map(el => {
+    buttonCheckWatched(el, idOfWathcedItems);
+    buttonCheckQueue(el, idOfQueueItems);
+    return;
+  });
 }
 
 function makeListOfQueue() {
@@ -54,7 +73,6 @@ function makeListOfQueue() {
   refs.watchedButton.classList.remove('active-nav-button');
   refs.queueButton.classList.add('active-nav-button');
   const fromLocalStorage = JSON.parse(localStorage.getItem('queue'));
-  console.log(fromLocalStorage);
   if (fromLocalStorage === null || fromLocalStorage.length === 0) {
     return refs.myLibHome.insertAdjacentHTML(
       'beforeend',
@@ -68,6 +86,20 @@ function makeListOfQueue() {
     .map(result => filmListMarkupFromLocalStor(result))
     .join('');
   refs.myLibHome.insertAdjacentHTML('beforeend', markup);
+  refs.myLibHome.addEventListener('click', activeToggle);
+  refs.movieItems = document.querySelectorAll('.home__list-item');
+
+  const storageWatchedItems = JSON.parse(localStorage.getItem('watched')) || [];
+  const storageQueueItems = JSON.parse(localStorage.getItem('queue')) || [];
+  const idOfWathcedItems = storageWatchedItems.map(({ id }) => id);
+  const idOfQueueItems = storageQueueItems.map(({ id }) => id);
+  const arrayOfMovieItems = Array.from(refs.movieItems);
+
+  arrayOfMovieItems.map(el => {
+    buttonCheckWatched(el, idOfWathcedItems);
+    buttonCheckQueue(el, idOfQueueItems);
+    return;
+  });
 }
 
 export default makeLibPage;
