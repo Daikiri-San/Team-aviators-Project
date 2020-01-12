@@ -20,6 +20,11 @@ import {
   changeSearchPageNumber,
 } from './2searchAndPlaginationHomePage';
 import { changePageNumber } from './2searchAndPlaginationHomePage';
+import {
+  buttonCheckWatched,
+  buttonCheckQueue,
+  activeToggle,
+} from './view/buttonCheck';
 
 const debounce = require('lodash.debounce');
 const Handlebars = require('handlebars');
@@ -80,6 +85,22 @@ const makeOnePage = () => {
       refs.nextButton.addEventListener('click', nextPage);
       refs.prevButton.addEventListener('click', prevPage);
       refs.myLibHome.addEventListener('click', ToLocalStorage);
+      refs.myLibHome.addEventListener('click', activeToggle);
+      refs.movieItems = document.querySelectorAll('.home__list-item');
+    })
+    .then(() => {
+      const storageWatchedItems =
+        JSON.parse(localStorage.getItem('watched')) || [];
+      const storageQueueItems = JSON.parse(localStorage.getItem('queue')) || [];
+      const idOfWathcedItems = storageWatchedItems.map(({ id }) => id);
+      const idOfQueueItems = storageQueueItems.map(({ id }) => id);
+      const arrayOfMovieItems = Array.from(refs.movieItems);
+
+      arrayOfMovieItems.map(el => {
+        buttonCheckWatched(el, idOfWathcedItems);
+        buttonCheckQueue(el, idOfQueueItems);
+        return;
+      });
     });
 };
 
@@ -160,6 +181,22 @@ function searchMovies() {
       refs.nextButton.addEventListener('click', nextSearchPage);
       refs.prevButton.addEventListener('click', prevSearchPage);
       refs.myLibHome.addEventListener('click', ToLocalStorage);
+      refs.myLibHome.addEventListener('click', activeToggle);
+      refs.movieItems = document.querySelectorAll('.home__list-item');
+    })
+    .then(() => {
+      const storageWatchedItems =
+        JSON.parse(localStorage.getItem('watched')) || [];
+      const storageQueueItems = JSON.parse(localStorage.getItem('queue')) || [];
+      const idOfWathcedItems = storageWatchedItems.map(({ id }) => id);
+      const idOfQueueItems = storageQueueItems.map(({ id }) => id);
+      const arrayOfMovieItems = Array.from(refs.movieItems);
+
+      arrayOfMovieItems.map(el => {
+        buttonCheckWatched(el, idOfWathcedItems);
+        buttonCheckQueue(el, idOfQueueItems);
+        return;
+      });
     });
 }
 
