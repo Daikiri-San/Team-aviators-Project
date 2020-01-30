@@ -2,6 +2,7 @@ import myLibPageMarkup from '../templates/myLibPageMarkup';
 import refs from './utils/refs';
 import filmListMarkupFromLocalStor from '..//templates/filmListMarkupFromLocalStor.hbs';
 import drawMovieDetails from './4filmDetailsPage';
+import toTop from './view/toTopButton';
 import { ToLocalStorage } from './1InitialHomePage';
 import { typeOfQueueForBack } from './1InitialHomePage';
 import {
@@ -10,7 +11,7 @@ import {
   activeToggle,
 } from './view/buttonCheck';
 
-function makeLibPage() {
+function initialMyLibPage() {
   refs.homePage.innerHTML = '';
   refs.detailsPage.innerHTML = '';
   refs.myLibList.innerHTML = '';
@@ -19,19 +20,32 @@ function makeLibPage() {
   refs.queueButton = document.querySelector('#queue-button');
   refs.myLibHome = document.querySelector('#mylib-home');
 
-  makeListOfWatched();
-  typeOfQueueForBack.listType = makeLibPage;
-
   refs.watchedButton.addEventListener('click', () => {
     makeListOfWatched();
     typeOfQueueForBack.listType = makeLibPage;
   });
   refs.queueButton.addEventListener('click', () => {
     makeListOfQueue();
-    typeOfQueueForBack.listType = makeLibPage;
+    typeOfQueueForBack.listType = makeLibPageFromQueue;
   });
   refs.myLibHome.addEventListener('click', drawMovieDetails);
   refs.myLibHome.addEventListener('click', ToLocalStorage);
+}
+
+function makeLibPage() {
+  initialMyLibPage();
+
+  makeListOfWatched();
+  typeOfQueueForBack.listType = makeLibPage;
+  toTop();
+}
+
+function makeLibPageFromQueue() {
+  initialMyLibPage();
+
+  makeListOfQueue();
+  typeOfQueueForBack.listType = makeListOfQueue;
+  toTop();
 }
 
 function makeListOfWatched() {

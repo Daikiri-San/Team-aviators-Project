@@ -1,9 +1,9 @@
 import refs from './utils/refs';
-import { makeHomePage, makeOnePage } from './1InitialHomePage';
-import makeLibPage from './5libraryPage';
+import { firstTimeHomePage, makeOnePage } from './1InitialHomePage';
+import makeLibPageFromWathed from './5libraryPage';
 
-refs.logo.addEventListener('click', makeHomePage);
+refs.logo.addEventListener('click', firstTimeHomePage);
 refs.logo.addEventListener('click', makeOnePage);
-refs.homeButton.addEventListener('click', makeHomePage);
+refs.homeButton.addEventListener('click', firstTimeHomePage);
 refs.homeButton.addEventListener('click', makeOnePage);
-refs.myLibButton.addEventListener('click', makeLibPage);
+refs.myLibButton.addEventListener('click', makeLibPageFromWathed);
