@@ -33,6 +33,11 @@ Handlebars.registerHelper('slice', function(aString) {
   return aString.slice(0, 4);
 });
 
+const typeOfQueueForBack = {
+  listType: makeOnePage,
+  counterType: changePageNumber,
+};
+
 function makeHomePage() {
   refs.homePage.innerHTML = '';
   refs.detailsPage.innerHTML = '';
@@ -51,7 +56,14 @@ function makeHomePage() {
 
 makeHomePage();
 
-const makeOnePage = () => {
+function firstTimeHomePage() {
+  initialFetchAPI.page = 1;
+  makeHomePage();
+}
+
+function makeOnePage() {
+  typeOfQueueForBack.listType = makeOnePage;
+  typeOfQueueForBack.counterType = changePageNumber;
   initialFetchAPI
     .fetchPopularFilms()
     .then(({ results }) => {
@@ -101,8 +113,9 @@ const makeOnePage = () => {
         buttonCheckQueue(el, idOfQueueItems);
         return;
       });
-    });
-};
+    })
+    .catch(console.warn);
+}
 
 function ToLocalStorage({ target }) {
   if (target.classList.contains('home__list--hover-star')) {
@@ -115,11 +128,6 @@ function ToLocalStorage({ target }) {
 }
 
 makeOnePage();
-
-let typeOfQueueForBack = {
-  listType: makeOnePage,
-  counterType: changePageNumber,
-};
 
 function firstSearchMovies() {
   searchFetch.page = 1;
@@ -135,7 +143,6 @@ function searchMovies() {
   }
   searchFetch.query = input;
   refs.myLibHome.innerHTML = '';
-  changeSearchPageNumber();
   searchFetch
     .fetchSearchMovies()
     .then(({ results }) => {
@@ -197,12 +204,14 @@ function searchMovies() {
         buttonCheckQueue(el, idOfQueueItems);
         return;
       });
-    });
+    })
+    .catch(console.warn);
 }
 
 export {
   makeOnePage,
   makeHomePage,
+  firstTimeHomePage,
   searchMovies,
   ToLocalStorage,
   typeOfQueueForBack,

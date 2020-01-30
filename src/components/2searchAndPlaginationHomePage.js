@@ -9,11 +9,10 @@ const changePageNumber = () => {
   return (refs.pageButton.textContent = currentPage);
 };
 
-const nextPage = target => {
+const nextPage = () => {
   refs.myLibHome.innerHTML = '';
 
   initialFetchAPI.incrementPage();
-  console.log(target);
   makeOnePage();
   changePageNumber();
 };
