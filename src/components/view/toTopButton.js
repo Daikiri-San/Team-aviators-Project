@@ -6,3 +6,5 @@ function toTop() {
 }
 
 refs.ScrollButton.addEventListener('click', toTop);
+
+export default toTop;
