@@ -50,10 +50,18 @@
       cursor: pointer;
 
       &:hover {
-        background-color: #92979755;
+        background-color: $main-background-color;
         box-shadow: 0 0 3px 3px #273b3a;
         color: $main-white-color;
       }
+    }
+
+    &-prew {
+      margin-right: 6px;
+    }
+
+    &-next {
+      margin-left: 6px;
     }
 
     &-page {
