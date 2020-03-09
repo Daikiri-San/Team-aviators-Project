@@ -82,7 +82,6 @@ function drawMovieDetails({ target }) {
 }
 
 const backToPrevViewPage = () => {
-  const currentPage = initialFetchAPI.page;
   makeHomePage();
   typeOfQueueForBack.listType();
   typeOfQueueForBack.counterType();
